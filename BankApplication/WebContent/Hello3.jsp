@@ -7,6 +7,6 @@
 <title>Hello3 file</title>
 </head>
 <body>
-	STARTING APP
+	STARTING APPs
 </body>
 </html>
