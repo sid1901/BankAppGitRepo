@@ -3,15 +3,33 @@ package com.csc.BankingApp;
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.servlet.ModelAndView;  
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse;   
+import org.springframework.stereotype.Controller; 
+import org.springframework.web.bind.annotation.RequestMapping; 
+import org.springframework.web.servlet.ModelAndView;
+
 @Controller  
 public class HelloWorldController {  
-    @RequestMapping("/hello")  
-    public ModelAndView helloWorld() {  
-    	System.out.println("CALLING THIS");
-        String message = "HELLO SPRING MVC HOW R Uasd";  
-        return new ModelAndView("Hello2", "message", message);  
-        
-    }  
+    @RequestMapping("/Login")  
+    public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
+    	String userName=request.getParameter("uid");
+    	String password=request.getParameter("pwd");
+    	String message;
+    	if(userName != null 
+    			&& !userName.equals("") 
+    			&& userName.equals("sid") 
+    			&& password != null 
+    			&& !password.equals("") 
+    			&& password.equals("123")){
+    		message = "Welcome " +userName + ".";
+    		return new ModelAndView("welcome", "message", message);
+    	}
+    	else{
+    		message = "Wrong username or password.";
+    		return new ModelAndView("errorPage", "message", message); } 
+    	}     
+   
     
 
     @RequestMapping("/smita")  
