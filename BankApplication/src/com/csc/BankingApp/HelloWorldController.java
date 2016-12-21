@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.servlet.ModelAndView;  
 import javax.servlet.http.HttpServletRequest; 
-import javax.servlet.http.HttpServletResponse;   
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller; 
 import org.springframework.web.bind.annotation.RequestMapping; 
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,11 @@ public class HelloWorldController {
     			&& password != null 
     			&& !password.equals("") 
     			&& password.equals("123")){
+    		
+    		HttpSession session = request.getSession();
+    		session.setAttribute("user", userName);
+    		session.setMaxInactiveInterval(30*60); //30 minutes
+    		
     		message = "Welcome " +userName + ".";
     		return new ModelAndView("welcome", "message", message);
     	}
@@ -32,12 +39,10 @@ public class HelloWorldController {
    
     
 
-    @RequestMapping("/smita")  
-    public ModelAndView smitafunc() {  
-    	System.out.println("I am smita");
-        String message2 = "This is my message";  
-        return new ModelAndView("Hello3", "message2", message2);  
-    }  
+    
+       
+
+   
 
     
 }  
