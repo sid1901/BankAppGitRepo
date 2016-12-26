@@ -26,7 +26,7 @@ public class HelloWorldController {
     	
     	try {
     		Class.forName("com.mysql.jdbc.Driver"); 
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/world","root","sid1901");
+			Connection con=DriverManager.getConnection("jdbc:mysql://20.198.11.120:3306/world","sid","sid1901");
 			System.out.println("hii connected");
 		} catch (SQLException e) {
 			System.out.println("Ni Ho Paya");
