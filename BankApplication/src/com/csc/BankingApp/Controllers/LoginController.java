@@ -1,27 +1,51 @@
-package com.csc.BankingApp.Connectors;
+package com.csc.BankingApp.Controllers;
 
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.servlet.ModelAndView;
 
+import com.csc.BankingApp.Dao.LoginDetailsDao;
+import com.csc.BankingApp.ValueObjects.LoginVO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.stereotype.Controller; 
-import org.springframework.web.bind.annotation.RequestMapping; 
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.context.ApplicationContext;  
+import org.springframework.context.support.ClassPathXmlApplicationContext;  
 
 @Controller  
-public class HelloWorldController {  
-    @RequestMapping("/Login")  
+public class LoginController {  
+    @RequestMapping("/smita")  
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
     	
     	System.out.println("I AM HERE");
+    	
+    	    ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
+    	      
+    	    LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
+    	    LoginVO obj = new LoginVO();
+    	    obj.setUname("sid1901");
+    	    obj.setUpwd("sidpwd");
+    	    int status=dao.saveLogin(obj);  
+    	    System.out.println(status);
+    	    System.out.println("Database Updated !!!");
+    	          
+    	    /*int status=dao.updateEmployee(new Employee(102,"Sonoo",15000)); 
+    	    System.out.println(status); 
+    	    */  
+    	          
+    	    /*Employee e=new Employee(); 
+    	    e.setId(102); 
+    	    int status=dao.deleteEmployee(e); 
+    	    System.out.println(status);*/  
+    	      
+    	 
+    	  
+    	  
+    	
     	
     	
     	try {

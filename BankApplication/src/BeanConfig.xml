@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  
+
+<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+<property name="driverClassName" value="com.mysql.jdbc.Driver" />  
+<property name="url" value="jdbc:mysql://20.198.11.120:3306/world" />  
+<property name="username" value="sid" />  
+<property name="password" value="sid1901" />  
+</bean>  
+  
+
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+<property name="dataSource" ref="ds"></property>  
+</bean>  
+  
+
+<bean id="ldao" class="com.csc.BankingApp.Dao.LoginDetailsDao">  
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>  
+</bean>  
+  
+</beans>
