@@ -10,10 +10,27 @@ public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;  
 }  
   
-public int saveLogin(LoginVO o){  
-    String query="insert into login_details values('" +o.getUname() +"','" +o.getUpwd()+ "')";  
-    return jdbcTemplate.update(query);  
+public int registerUser(LoginVO o){  
+    String query1="insert into login_details values('" +o.getUname() +"','" +o.getUpwd()+ "')";  
+    int results=0;
+    results=jdbcTemplate.update(query1);
+    
+    String query2="insert into customer_info values('" +o.getUname() +"','" +o.getCust_fnmae()+ "','" +o.getCust_lname()+ "','" +o.getCust_add_l1()
+    + "','" +o.getCust_add_l2()+ "','" +o.getCust_mobile()+ "','" +o.getCust_age()+ "','" +o.getCust_gender()+ "')";  
+
+    results=results+jdbcTemplate.update(query2);
+    
+    return results;  
 }  
+
+public int ValidateUser(LoginVO o){  
+	int result=0;
+	String query="select count(*) from login_details where uname = '" +o.getUname() +"' and upwd='" +o.getUpwd()+ "'";  
+	 result = jdbcTemplate.queryForInt(query);
+        
+    return result;  
+}  
+
 
 public int updateLogin(LoginVO o){  
     String query="update login_details "

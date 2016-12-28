@@ -8,7 +8,8 @@
 </head>
 <body>
 Welcome to Web based banking application
-<a href="smita.html"> Click for new user regiseration</a>
+<a href="Register.html"> Click for new user regiseration</a>
+
 <%-- <%
 	//invalidate the session if exists
 	session = request.getSession(false);
@@ -19,7 +20,7 @@ if(session != null){
 
 %>
  --%>
- <form action="Login.html" method="POST">
+ <form action="Validate.html" method="POST">
 user id <input type="text" name="uid"/>
 password <input type="password" name="pwd"/>
 <input type= "submit" value="Submit"/>
