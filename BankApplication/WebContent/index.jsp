@@ -7,8 +7,8 @@
 <title>Banking App</title>
 </head>
 <body>
-	Welcome to Web based banking application
-	<a href="Register.html"> Click for new user regiseration</a>
+	Welcome to Web based banking application </br>
+	
 
 	<%-- <%
 	//invalidate the session if exists.
@@ -20,10 +20,13 @@ if(session != null){
 
 %>
  --%>
+ </br>
 	<form action="Validate.html" method="POST">
-		user id <input type="text" name="uid" /> password <input
-			type="password" name="pwd" /> <input type="submit" value="Submit" />
-
+		user id <input type="text" name="uid" /> </br>
+		password <input type="password" name="pwd" /> </br>
+		<input type="submit" value="Submit" />
+</br>
+<a href="Register.html"> Click for new user regiseration</a>
 	</form>
 </body>
 </html>

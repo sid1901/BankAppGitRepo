@@ -30,7 +30,7 @@ public class LoginVO {
 		return uid;
 	}
 
-	public void setUname(String uid) {
+	public void setUid(String uid) {
 		this.uid = uid;
 	}
 

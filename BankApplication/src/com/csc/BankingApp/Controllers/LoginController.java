@@ -1,6 +1,7 @@
 package com.csc.BankingApp.Controllers;
 
-import org.springframework.stereotype.Controller;  
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,25 +20,36 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @Controller  
 public class LoginController {  
     @RequestMapping("/Validate")  
-    public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response) {
-    	
-    	System.out.println("I AM HERE");
+    public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
     	
     	    ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
     	      
     	    LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
     	    LoginVO obj = new LoginVO();
-    	    obj.setUname(request.getParameter("uid"));
+    	    obj.setUid(request.getParameter("uid"));
     	    obj.setUpwd(request.getParameter("pwd"));
-    	    
-    	    int status=dao.ValidateUser(obj);  
+    	    int status=0;
+    	    status=dao.ValidateUser(obj);  
     	    System.out.println(status);
 
     	    if (status==1){
     	    	String uid = request.getParameter("uid");
     	    	String Fname = dao.FindCustomerNameById(uid);  
-        		String welcome_message = "Welcome id" +uid + "NAME: " +Fname+ " .";
-        		return new ModelAndView("welcome", "message", welcome_message);
+        		String welcome_message = "Welcome User: " +Fname+ ".";
+        		modal.addAttribute("UserName", Fname);
+        		modal.addAttribute("message",welcome_message);
+        		
+        		HttpSession session = request.getSession();
+        		session.setAttribute("uid", uid);
+        		
+        		//setting session to expiry in 30 mins
+    			session.setMaxInactiveInterval(30*60);
+    		
+    			//response.sendRedirect("LoginSuccess.jsp");
+        		
+        		
+        		
+        		return new ModelAndView("welcome");
         	}
         	else{
         		String error_message = "Wrong username or password.";
@@ -67,7 +79,17 @@ public class LoginController {
     		session.setMaxInactiveInterval(30*60); //30 minutes
 */    		
     		
-    
+    @RequestMapping("/Logout")  
+    public ModelAndView Logout_fun(HttpServletRequest request, HttpServletResponse response) {
+    	
+    	HttpSession session = request.getSession();
+		session.removeAttribute("uid");
+		request.removeAttribute("uid");
+		
+		String message = "Successfully Logged Out ! Visit Again";
+	
+    	return new ModelAndView("LoginPage", "message", message); 
+    }    
 
 @RequestMapping("/Register")  
 public ModelAndView register_fun(HttpServletRequest request, HttpServletResponse response) {
@@ -87,7 +109,7 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     String FName=request.getParameter("fname");
     System.out.println(FName);
     
-    obj.setUname(request.getParameter("uid"));
+    obj.setUid(request.getParameter("uid"));
     obj.setUpwd(request.getParameter("pwd"));
     obj.setCust_fnmae(request.getParameter("fname"));
     obj.setCust_lname(request.getParameter("lname"));
@@ -106,6 +128,15 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
 	String message = "User Successfully Created! Please Login with your credentials";
 	return new ModelAndView("LoginPage", "message", message); 
 }
+
+@RequestMapping("/Services")  
+public ModelAndView Services_fun(HttpServletRequest request, HttpServletResponse response) {
+	String message = "Dummy Message";
+	return new ModelAndView("OHello", "message", message); 
+}
+
+
+
 }
   
 
