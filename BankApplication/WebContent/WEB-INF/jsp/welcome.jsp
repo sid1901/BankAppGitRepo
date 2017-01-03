@@ -2,21 +2,17 @@
 <html> 
 <head> 
 
-<title>Spring MVC login example.</title> 
+<title>Welcome</title> 
 </head> 
 <body> 
 
-<form action="index.jsp" method="post">
-<input type="submit" value="Logout" >
-</form>
 
 
-
-<%-- <h2>${message}</h2> --%> 
+<%-- <h2>${ModalName}</h2> --%> 
 
 <%
 //allow access only if session exists
-out.println("asdasd");
+//out.println("asdasd");
 String user = null;
 if(session.getAttribute("user") == null){
 	response.sendRedirect("index.html");
@@ -28,6 +24,14 @@ if(session.getAttribute("user") == null){
 }
 %>
 
+<h1>Select your Service</h1>
+<form action="Service.html" method="post">
+<select name="Option">
+    <option value="Sr">Service</option>
+    <option value="PB">Pass book</option>
+ </select>
+<input type="Submit" value="Submit" >
+</form>
 
 </body> 
 </html>
