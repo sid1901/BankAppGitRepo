@@ -7,7 +7,7 @@ public class LoginVO {
 	}
 
 	// private attributes
-	private String uname;
+	private String uid;
 	private String upwd;
 	private String cust_fnmae;
 	private String cust_lname;
@@ -26,12 +26,12 @@ public class LoginVO {
 		this.upwd = upwd;
 	}
 
-	public String getUname() {
-		return uname;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setUname(String uid) {
+		this.uid = uid;
 	}
 
 	public String getCust_fnmae() {

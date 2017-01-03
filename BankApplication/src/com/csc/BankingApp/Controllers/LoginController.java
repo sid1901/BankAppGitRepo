@@ -34,8 +34,9 @@ public class LoginController {
     	    System.out.println(status);
 
     	    if (status==1){
-    	    	String uname = request.getParameter("uid");
-        		String welcome_message = "Welcome " +uname + ".";
+    	    	String uid = request.getParameter("uid");
+    	    	String Fname = dao.FindCustomerNameById(uid);  
+        		String welcome_message = "Welcome id" +uid + "NAME: " +Fname+ " .";
         		return new ModelAndView("welcome", "message", welcome_message);
         	}
         	else{
@@ -102,8 +103,8 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     System.out.println("Customer Info Updated !!!");
        
     
-	String message = "Dummy Message";
-	return new ModelAndView("index", "message", message); 
+	String message = "User Successfully Created! Please Login with your credentials";
+	return new ModelAndView("LoginPage", "message", message); 
 }
 }
   
