@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +7,11 @@
 <title>Banking App</title>
 </head>
 <body>
-Welcome to Web based banking application
-<a href="smita.html"> Click for new user regiseration</a>
-<%
-	//invalidate the session if exists
+	Welcome to Web based banking application
+	<a href="Register.html"> Click for new user regiseration</a>
+
+	<%-- <%
+	//invalidate the session if exists.
 	session = request.getSession(false);
 System.out.println("User="+session.getAttribute("user"));
 if(session != null){
@@ -18,11 +19,11 @@ if(session != null){
 }
 
 %>
-<form action="Login.html" method="POST">
-user id <input type="text" name="uid"/>
-password <input type="password" name="pwd"/>
-<input type= "submit" value="Submit"/>
+ --%>
+	<form action="Validate.html" method="POST">
+		user id <input type="text" name="uid" /> password <input
+			type="password" name="pwd" /> <input type="submit" value="Submit" />
 
-</form>
+	</form>
 </body>
 </html>
