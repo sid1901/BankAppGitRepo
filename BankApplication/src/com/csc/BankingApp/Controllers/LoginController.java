@@ -43,38 +43,14 @@ public class LoginController {
     			session.setMaxInactiveInterval(30*60);
     		
     			//response.sendRedirect("LoginSuccess.jsp");
-        		
-        		
-        		
+    			
         		return new ModelAndView("welcome");
         	}
         	else{
         		String error_message = "Wrong username or password.";
         		return new ModelAndView("errorPage", "message", error_message); } 
         	}
-    	    
-    	    
-    	  //  obj.setUname("Rajesh3");
-    	   // obj.setUpwd("Rajpwd3");
-    	   // int status=dao.saveLogin(obj);  
-    	   // System.out.println(status);
-    	   // System.out.println("Database Updated !!!");
-    	          
-    	    /*int status=dao.updateEmployee(new Employee(102,"Sonoo",15000)); 
-    	    System.out.println(status); 
-    	    */  
-    	          
-    	    /*Employee e=new Employee(); 
-    	    e.setId(102); 
-    	    int status=dao.deleteEmployee(e); 
-    	    System.out.println(status);*/  
-    	         	
-    
-    		
-    		/*HttpSession session = request.getSession();
-    		session.setAttribute("user", userName);
-    		session.setMaxInactiveInterval(30*60); //30 minutes
-*/    		
+    	 
     		
     @RequestMapping("/Logout")  
     public ModelAndView Logout_fun(HttpServletRequest request, HttpServletResponse response) {
@@ -160,6 +136,13 @@ public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse re
     }
 }
 
+
+
+@RequestMapping("/SendMail")  
+public ModelAndView SendMail_fun(HttpServletRequest request, HttpServletResponse response) {
+	String message = "Sorry ! This Page is Under Construction...";
+	return new ModelAndView("LoginPage", "message", message); 
+}
 
 
 

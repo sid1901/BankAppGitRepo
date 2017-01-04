@@ -12,7 +12,7 @@
 Password Recovery mail will be sent to </br>
 ${email} </br>
  
-<input type="button" id="b1" value = "Continue"></input>   
+<input type="button" id="b1" value = "Continue" onclick="location.href='/BankApplication/SendMail.html'" ></input>   
 <input type="button" id="b2" value = "Cancel" onclick="location.href='/BankApplication/index.jsp'"></input>
 
 
