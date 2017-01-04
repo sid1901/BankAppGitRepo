@@ -10,6 +10,7 @@
 
 <input type="button" id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br>
 <input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br>
+<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input>
 <br/>
 <br/>
 	

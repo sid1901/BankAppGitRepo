@@ -23,8 +23,7 @@
  <input type="text" name="amt"> <br>
  <br>
  <input type ="submit" name="Submit" value="Proceed to pay"/>
- <input type="button" id="b2" value = "Cancel" onclick="location.href='/BankApplication/sumbitservice.html'"></input>
- 
+<input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
 </form>
 </body>
 </html>
