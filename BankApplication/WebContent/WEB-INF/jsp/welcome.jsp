@@ -8,7 +8,8 @@
 <h2>${message}</h2><br/> 
 <%-- <h2>${UserName}</h2><br/> --%>  
 
-<a href="Services.html"> Click for new Service</a><br/>
+<input type="button" id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br>
+<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br>
 <br/>
 <br/>
 	

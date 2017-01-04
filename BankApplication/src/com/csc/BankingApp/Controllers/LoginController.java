@@ -15,9 +15,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;  
 
 @Controller  
-public class LoginController {  
-    @RequestMapping("/Validate")  
-    public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
+public class LoginController {
+	@RequestMapping("/Validate")
+public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
     	
     	    ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
     	    LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
@@ -50,10 +50,9 @@ public class LoginController {
         		String error_message = "Wrong username or password.";
         		return new ModelAndView("errorPage", "message", error_message); } 
         	}
-    	 
     		
-    @RequestMapping("/Logout")  
-    public ModelAndView Logout_fun(HttpServletRequest request, HttpServletResponse response) {
+@RequestMapping("/Logout")
+public ModelAndView Logout_fun(HttpServletRequest request, HttpServletResponse response) {
     	
     	HttpSession session = request.getSession();
 		session.removeAttribute("uid");
@@ -107,13 +106,11 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
 	return new ModelAndView("LoginPage", "message", message); 
 }
 
-
 @RequestMapping("/Forgot")  
 public ModelAndView ForgotPwd_Fun(HttpServletRequest request, HttpServletResponse response) {
 	String message = "Dummy Message";
 	return new ModelAndView("ForgotPWDPage", "message", message); 
 }
-
 
 @RequestMapping("/EmailForRecovery")  
 public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
@@ -129,14 +126,11 @@ public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse re
     	return new ModelAndView("LoginPage", "message", message); 
     }
     else{
-    System.out.println("email is "+email);
     model.addAttribute("email",email);
     model.addAttribute("uid",uid);
 	return new ModelAndView("RecoverByMail");
     }
 }
-
-
 
 @RequestMapping("/SendMail")  
 public ModelAndView SendMail_fun(HttpServletRequest request, HttpServletResponse response) {
