@@ -24,5 +24,11 @@ Female <input type="radio" value="female" name="gen"/>
 <input type= "submit" value="Submit"/>
 
 </form>
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader("Expires", 0);
+session.invalidate();
+%>
 </body>
 </html>

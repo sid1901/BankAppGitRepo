@@ -6,5 +6,11 @@
 <body> 
 <h2>${message}</h2><br/> 
 <jsp:include page="/index.jsp"></jsp:include> 
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader("Expires", 0);
+session.invalidate();
+%>
  </body> 
 </html>
