@@ -24,9 +24,10 @@ if(session != null){
 	<form action="Validate.html" method="POST">
 		user id <input type="text" name="uid" /> </br>
 		password <input type="password" name="pwd" /> </br>
+		<a href="Forgot.html"> Forgot Password ?</a> </br>
 		<input type="submit" value="Submit" />
 </br>
-<a href="Register.html"> Click for new user regiseration</a>
 	</form>
+	<a href="Register.html"> Click for new user regiseration</a>
 </body>
 </html>

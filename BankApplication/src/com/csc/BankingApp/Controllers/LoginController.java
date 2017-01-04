@@ -117,6 +117,7 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     obj.setCust_add_l1(request.getParameter("add1"));
     obj.setCust_add_l2(request.getParameter("add2"));
     obj.setCust_mobile(request.getParameter("mob"));
+    obj.setCust_email(request.getParameter("email"));
     obj.setCust_age(Integer.parseInt(request.getParameter("age")));
     obj.setCust_gender(request.getParameter("gen"));
     
@@ -128,6 +129,35 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     
 	String message = "User Successfully Created! Please Login with your credentials";
 	return new ModelAndView("LoginPage", "message", message); 
+}
+
+
+@RequestMapping("/Forgot")  
+public ModelAndView ForgotPwd_Fun(HttpServletRequest request, HttpServletResponse response) {
+	String message = "Dummy Message";
+	return new ModelAndView("ForgotPWDPage", "message", message); 
+}
+
+
+@RequestMapping("/EmailForRecovery")  
+public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	String uid = request.getParameter("uid");
+    
+	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
+    LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
+    
+    String email = null;
+    email = dao.FindEmailByUid(uid);
+    if (email==null){
+    	String message = "Sorry! no such user exists.";
+    	return new ModelAndView("LoginPage", "message", message); 
+    }
+    else{
+    System.out.println("email is "+email);
+    model.addAttribute("email",email);
+    model.addAttribute("uid",uid);
+	return new ModelAndView("RecoverByMail");
+    }
 }
 
 @RequestMapping("/Services")  

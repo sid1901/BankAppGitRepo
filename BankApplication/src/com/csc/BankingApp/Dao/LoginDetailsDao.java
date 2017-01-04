@@ -19,7 +19,7 @@ public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     results=jdbcTemplate.update(query1);
     
     String query2="insert into customer_info values('" +o.getUid() +"','" +o.getCust_fnmae()+ "','" +o.getCust_lname()+ "','" +o.getCust_add_l1()
-    + "','" +o.getCust_add_l2()+ "','" +o.getCust_mobile()+ "','" +o.getCust_age()+ "','" +o.getCust_gender()+ "')";  
+    + "','" +o.getCust_add_l2()+ "','" +o.getCust_mobile()+ "','" +o.getCust_age()+ "','" +o.getCust_gender()+ "','" +o.getCust_email()+ "')";  
 
     results=results+jdbcTemplate.update(query2);
     
@@ -69,5 +69,23 @@ public LoginVO FindDetailsByUId(String uid){
 			sql, new Object[] { uid }, new BeanPropertyRowMapper(LoginVO.class));
 	return details;
 }
+
+
+public String FindEmailByUid(String uid) {
+	// TODO Auto-generated method stub
+	String sql = "SELECT CUST_EMAIL FROM CUSTOMER_INFO WHERE CUST_UID = ?";
+
+	try{
+	String email = (String)jdbcTemplate.queryForObject(
+			sql, new Object[] { uid }, String.class);
+	
+	return email;
+	}
+	catch(Exception e)
+	{
+	String email = null;
+	return email;
+	}
+}  
 
 }  

@@ -17,6 +17,7 @@ Last Name <input type="text" name="lname"/><br/>
 Address Line 1 <input type="text" name="add1"/><br/>  
 Address Line 2 <input type="text" name="add2"/><br/>  
 Mobile No. <input type="text" name="mob"/><br/>  
+Email. <input type="text" name="email"/><br/>  
 Age <input type="text" name="age"/><br/>  
 Gender 
 Male <input type="radio" value="male" name="gen"/>

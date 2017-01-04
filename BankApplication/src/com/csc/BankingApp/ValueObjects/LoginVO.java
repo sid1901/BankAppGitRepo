@@ -14,6 +14,7 @@ public class LoginVO {
 	private String cust_add_l1;
 	private String cust_add_l2;
 	private String cust_mobile;
+	private String cust_email;
 	private String cust_gender;
 	private int cust_age;
 
@@ -88,6 +89,14 @@ public class LoginVO {
 
 	public void setCust_age(int cust_age) {
 		this.cust_age = cust_age;
+	}
+
+	public String getCust_email() {
+		return cust_email;
+	}
+
+	public void setCust_email(String cust_email) {
+		this.cust_email = cust_email;
 	}
 
 }
