@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
-<title>Hello World</title>
+<title>Banking Services</title>
  </head>
 <body>
 
@@ -17,8 +17,16 @@ Logged in id=<%=uid %>
 <br/>
 <br/>
    
-<form action="Logout.html" method="post">
-<input type="submit" value="Logout" >
+<form action="Mobile.html" method="post">
+<select name="Service11">
+    <option value= "MB">Mobile Recharge</option>
+    <option value="EB">Electricity Bill</option>
+    <option value="DTH">DTH</option>
+    <option value="Gas">GAS</option>
+  </select>
+  <br><br>
+
+<input type="submit" value="Submit" >
 </form>
 
    

@@ -20,8 +20,8 @@ public class LoginController {
     public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
     	
     	    ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
-    	      
     	    LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
+    	   
     	    LoginVO obj = new LoginVO();
     	    obj.setUid(request.getParameter("uid"));
     	    obj.setUpwd(request.getParameter("pwd"));
@@ -86,7 +86,7 @@ public class LoginController {
 		response.setDateHeader("Expires", 0);
 		session.invalidate();
 		request.removeAttribute("uid");
-		
+		session.invalidate();
 		String message = "Successfully Logged Out ! Visit Again";
 	
     	return new ModelAndView("LoginPage", "message", message); 
@@ -160,11 +160,7 @@ public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse re
     }
 }
 
-@RequestMapping("/Services")  
-public ModelAndView Services_fun(HttpServletRequest request, HttpServletResponse response) {
-	String message = "Dummy Message";
-	return new ModelAndView("OHello", "message", message); 
-}
+
 
 
 
