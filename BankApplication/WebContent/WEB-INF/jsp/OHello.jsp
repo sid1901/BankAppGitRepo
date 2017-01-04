@@ -10,23 +10,19 @@ String uid = (String) session.getAttribute("uid");
 %>
 
 Logged in id=<%=uid %>
-<br/>
-<br/>
-
    <h2>${message}</h2>
-<br/>
-<br/>
-   
-<form action="Mobile.html" method="post">
+ <br>
+<form action="sumbitservice.html" method="post">
 <select name="Service11">
     <option value= "MB">Mobile Recharge</option>
     <option value="EB">Electricity Bill</option>
     <option value="DTH">DTH</option>
-    <option value="Gas">GAS</option>
   </select>
   <br><br>
 
 <input type="submit" value="Submit" >
+<input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
+
 </form>
 
    

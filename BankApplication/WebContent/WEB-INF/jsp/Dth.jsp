@@ -4,28 +4,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Mobile Recharge</title>
+<title>DTH Recharge</title>
 </head>
 <body>
 <h2>${message}</h2> 
-<input type="text" name="mob"><br>
-<br>
-<form action ="Mobile.html" method="post">
-<input type="radio" name="pre" value="Prepaid"  > Pre-paid
-<input type="radio" name="pre" value="Postpaid"> Post paid<br>
-<br>
+
+<form action ="Dth.html" method="post">
+
 <h>Select your Operator</h>
   <select name="operator">
-    <option value="bsnl">BSNL</option>
-    <option value="Airtel">Airtel</option>
-    <option value="Docomo">Docomo</option>
-    <option value="Idea">Idea</option>
+    <option value="TATA">TATASKY</option>
+    <option value="Airtel">Airtel Digital TV</option>
+    <option value="Dish">Dish TV</option>
+    <option value="Sun">Sun TV</option>
   </select><br>
   <br>
  <h>Enter Your Amount</h>
  <input type="text" name="amt"> <br>
  <br>
- <input type ="submit" name="Submit" value="proceed to pay"/>
+ <input type ="submit" name="Submit" value="Proceed to pay"/>
  <input type="button" id="b2" value = "Cancel" onclick="location.href='/BankApplication/sumbitservice.html'"></input>
  
 </form>
