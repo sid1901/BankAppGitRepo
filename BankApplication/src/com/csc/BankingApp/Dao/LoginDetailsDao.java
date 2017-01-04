@@ -18,13 +18,20 @@ public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     int results=0;
     results=jdbcTemplate.update(query1);
     
-    String query2="insert into customer_info values('" +o.getUid() +"','" +o.getCust_fnmae()+ "','" +o.getCust_lname()+ "','" +o.getCust_add_l1()
+    String query2="insert into customer_info values('" +o.getUid() +"','" +o.getCust_fname()+ "','" +o.getCust_lname()+ "','" +o.getCust_add_l1()
     + "','" +o.getCust_add_l2()+ "','" +o.getCust_mobile()+ "','" +o.getCust_age()+ "','" +o.getCust_gender()+ "','" +o.getCust_email()+ "')";  
 
     results=results+jdbcTemplate.update(query2);
     
     return results;  
-}  
+}
+ 
+ public int updateProfile(LoginVO o){
+	 int result =0;
+	 String query="UPDATE CUSTOMER_INFO SET CUST_FNAME='" +o.getCust_fname()+"', CUST_LNAME='"+o.getCust_lname()+"'";
+	 result=jdbcTemplate.update(query);
+	 return result;
+}
 
 
 public int ValidateUser(LoginVO o){  

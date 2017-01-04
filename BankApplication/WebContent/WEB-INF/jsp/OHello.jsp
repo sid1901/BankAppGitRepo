@@ -21,16 +21,16 @@ Logged in id=<%=uid %>
   <br><br>
 
 <input type="submit" value="Submit" >
-<input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
+<input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Validate.html'"></input>
 
 </form>
 
    
-<%
+<%-- <%
 response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
 response.setHeader("Pragma","no-cache");
 response.setDateHeader("Expires", 0);
 session.invalidate();
 %> 
-</body>
+ --%></body>
 </html>

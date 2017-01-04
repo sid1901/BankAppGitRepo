@@ -7,7 +7,7 @@
 <title>Its hello2222</title>
 </head>
 <body>
-<a href="CreateCourse.jsp">Creazione Nuovo Corso</a>
+
  <form action="NewUser.html" method="POST"><br/>  
 Enter user id <input type="text" name="uid"/><br/>  
 New password <input type="password" name="pwd"/><br/>  

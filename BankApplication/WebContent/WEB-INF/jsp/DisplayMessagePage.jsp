@@ -8,12 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<f:view>
+<h5>${message}</h5>
 
-Password Recovery mail will be sent to </br>
-${email} </br>
- 
-    
-<input type="button" id="b2" value = "Cancel" onclick="location.href='/BankApplication/index.jsp'"></input>
+<input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 
+</f:view>
 </body>
 </html>
