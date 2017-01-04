@@ -8,9 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.csc.BankingApp.Dao.LoginDetailsDao;
 import com.csc.BankingApp.ValueObjects.LoginVO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,6 +81,10 @@ public class LoginController {
     	
     	HttpSession session = request.getSession();
 		session.removeAttribute("uid");
+		response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+		response.setHeader("Pragma","no-cache");
+		response.setDateHeader("Expires", 0);
+		session.invalidate();
 		request.removeAttribute("uid");
 		
 		String message = "Successfully Logged Out ! Visit Again";
