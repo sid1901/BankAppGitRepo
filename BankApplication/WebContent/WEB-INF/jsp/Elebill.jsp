@@ -24,6 +24,7 @@
  <br>
  <input type ="submit" name="Submit" value="Proceed to pay"/>
 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
+<input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
  
 </form>
 </body>
