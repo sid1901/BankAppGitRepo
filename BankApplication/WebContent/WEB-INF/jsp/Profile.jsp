@@ -10,9 +10,11 @@
 function myFunction() {
     document.getElementById("fname").removeAttribute('disabled');
     document.getElementById("lname").removeAttribute('disabled');
-    document.getElementById("email").removeAttribute('disabled');
-    document.getElementById("age").removeAttribute('disabled');
+    document.getElementById("add1").removeAttribute('disabled');
+    document.getElementById("add2").removeAttribute('disabled');
     document.getElementById("mob").removeAttribute('disabled');
+    document.getElementById("age").removeAttribute('disabled');
+    document.getElementById("email").removeAttribute('disabled');
     document.getElementById("save").removeAttribute('disabled');
     document.getElementById("update").disabled="disabled";
     
@@ -24,9 +26,12 @@ function myFunction() {
 <form action="SaveProfile.html" method="post">
 <h4>Name: <input type = text name="fname" id="fname" value =${fname}  disabled="disabled"></input></h4>
 <h4>LastName: <input type = text name="lname" id="lname" value =${lname} disabled="disabled"></input></h4>
-<h4>Email:<input type = text id="email" value =${email} disabled="disabled"></input></h4>
-<h4>Age:<input type = text id="age" value =${age} disabled="disabled"></input></h4>
-<h4>Mobile:<input type = text id="mob" value =${mob} disabled="disabled"></input></h4>
+<h4>Address Line1:<input type = text id="add1" name="add1" value =${add1} disabled="disabled"></input></h4>
+<h4>Address Line2:<input type = text id="add2" name="add2" value =${add2} disabled="disabled"></input></h4>
+<h4>Mobile:<input type = text id="mob" name="mob" value =${mob} disabled="disabled"></input></h4>
+<h4>Age:<input type = text id="age" name="age" value =${age} disabled="disabled"></input></h4>
+<h4>Email:<input type = text id="email" name="email" value =${email} disabled="disabled"></input></h4>
+
 <input type="button" id="update" value="Update Profile"  onclick="myFunction()">
 <input type="submit" id="save" value="Save Profile" disabled="disabled">
 </form>

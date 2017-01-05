@@ -158,11 +158,27 @@ public ModelAndView view_prof_fun(HttpServletRequest request, HttpServletRespons
     String uid = (String) session.getAttribute("uid");
     LoginVO obj = new LoginVO();
     obj = dao.FindDetailsByUId(uid);
+    System.out.println("Fetching object :");
+    System.out.println(obj.getCust_fname());
+    System.out.println(obj.getCust_lname());
+    System.out.println(obj.getCust_add_l1());
+    System.out.println(obj.getCust_add_l2());
+    System.out.println(obj.getCust_mobile());
+    System.out.println(obj.getCust_age());
+    System.out.println(obj.getCust_email());
+    
+    
+    
+    
     map.addAttribute("fname",obj.getCust_fname());
     map.addAttribute("lname",obj.getCust_lname());
+    map.addAttribute("add1",obj.getCust_add_l1());
+    map.addAttribute("add2",obj.getCust_add_l2());
+    map.addAttribute("mob",obj.getCust_mobile());
     map.addAttribute("email",obj.getCust_email());
     map.addAttribute("age",obj.getCust_age());
-    map.addAttribute("mob",obj.getCust_mobile());
+    
+    
     
     return new ModelAndView("Profile");
 }	
@@ -178,8 +194,24 @@ public ModelAndView save_prof_fun(HttpServletRequest request, HttpServletRespons
 	  LoginVO obj = new LoginVO();
 	  System.out.println("OE"+request.getParameter("fname"));
 	  System.out.println(request.getParameter("lname"));
+	  System.out.println(request.getParameter("add1"));
+	  System.out.println(request.getParameter("add2"));
+	  System.out.println(request.getParameter("mob")); 
+	  System.out.println(request.getParameter("age"));
+	  System.out.println(request.getParameter("email"));
+	  System.out.println(request.getParameter("gender"));
+	  
+	  
+	  obj.setUid((session.getAttribute("uid")).toString());
 	  obj.setCust_fname(request.getParameter("fname"));
 	  obj.setCust_lname(request.getParameter("lname"));
+	    obj.setCust_add_l1(request.getParameter("add1"));
+	    obj.setCust_add_l2(request.getParameter("add2"));
+	    obj.setCust_mobile(request.getParameter("mob"));
+	    obj.setCust_email(request.getParameter("email"));
+	    obj.setCust_age(Integer.parseInt(request.getParameter("age")));
+	    
+	    
 	  int result=0;
 	  result = dao.updateProfile(obj);
 	  String message = "Profile Successfully Updated !!";

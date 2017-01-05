@@ -28,7 +28,10 @@ public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
  
  public int updateProfile(LoginVO o){
 	 int result =0;
-	 String query="UPDATE CUSTOMER_INFO SET CUST_FNAME='" +o.getCust_fname()+"', CUST_LNAME='"+o.getCust_lname()+"'";
+	 String query="UPDATE CUSTOMER_INFO SET CUST_FNAME='" +o.getCust_fname()+"', CUST_LNAME='"+o.getCust_lname()
+	 +"', CUST_ADD_L1='"+o.getCust_add_l1()+"', CUST_ADD_L2='"+o.getCust_add_l2()+"', CUST_MOBILE='"+o.getCust_mobile()
+	 +"', CUST_AGE='"+o.getCust_age()+"', CUST_EMAIL='"+o.getCust_email()
+	 +"' where CUST_UID='"+o.getUid()+"'";
 	 result=jdbcTemplate.update(query);
 	 return result;
 }
