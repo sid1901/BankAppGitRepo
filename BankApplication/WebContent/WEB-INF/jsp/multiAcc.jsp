@@ -16,6 +16,7 @@ ${message}
     <option value="Savings">Savings</option>
     <option value="Current">Current</option>
 </select></br>
+Enter Account Opening Balance: <input type="text" name="initAmt">
 </br><input type="submit" value="confirm">
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 </body>

@@ -15,6 +15,8 @@
     <option value="Savings">Savings</option>
     <option value="Current">Current</option>
 </select></br>
+Enter Account Opening Balance: (minimum 500Rs/-)
+<input type="text" name="initAmt">
 </br><input type="submit" value="confirm">
 </form>
 </f:view>

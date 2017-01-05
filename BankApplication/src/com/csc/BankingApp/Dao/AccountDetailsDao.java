@@ -15,7 +15,7 @@ public class AccountDetailsDao {
 	
 	public int saveAccDetails(AccountDetailsVO o , String uid){  
 		String query="insert into account_details values('" +o.getAcc_no() +"','" +o.getAcc_type() +"','"
-		+uid +"','0', curdate(), curdate())";
+		+uid +"','"+o.getAcc_curr_bal()+"', curdate(), curdate())";
 	    int results=0;
 	    results=jdbcTemplate.update(query);
 	     return results;  

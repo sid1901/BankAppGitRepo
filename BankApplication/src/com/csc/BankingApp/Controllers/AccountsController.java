@@ -28,6 +28,7 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
 {
 	int AccTypeexists=0;
 	String AccType=request.getParameter("AccType");
+	Double InitAmt=Double.parseDouble(request.getParameter("initAmt"));
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     
@@ -62,6 +63,7 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
 	
     obj.setAcc_no(AccNo);
     obj.setAcc_type(AccType);
+    obj.setAcc_curr_bal(InitAmt);
      session = request.getSession();
      uid=(String) session.getAttribute("uid");
     System.out.println("session uid: "+uid);
