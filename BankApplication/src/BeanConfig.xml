@@ -24,5 +24,10 @@
 <bean id="ldao" class="com.csc.BankingApp.Dao.LoginDetailsDao">  
 <property name="jdbcTemplate" ref="jdbcTemplate"></property>  
 </bean>  
+ 
+<bean id="accdao" class="com.csc.BankingApp.Dao.AccountDetailsDao">  
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>  
+</bean>   
+ 
   
 </beans>

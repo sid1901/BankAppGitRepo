@@ -7,10 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.BankingApp.Dao.LoginDetailsDao;
 import com.csc.BankingApp.ValueObjects.LoginVO;
-
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest; 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -94,9 +91,6 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     LoginDetailsDao dao=(LoginDetailsDao)ctx.getBean("ldao");
     LoginVO obj = new LoginVO();
     
-    String FName=request.getParameter("fname");
-    System.out.println(FName);
-    
     obj.setUid(request.getParameter("uid"));
     obj.setUpwd(request.getParameter("pwd"));
     obj.setCust_fname(request.getParameter("fname"));
@@ -110,13 +104,26 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
     
     int status=dao.registerUser(obj);  
     System.out.println(status);
+    String message=null;
+    
+    if(status==2){
     System.out.println("Creds Updated !!!");
     System.out.println("Customer Info Updated !!!");
-       
+    message = "User Successfully Created! Please Login with your credentials";
     
-	String message = "User Successfully Created! Please Login with your credentials";
-	return new ModelAndView("LoginPage", "message", message); 
+    HttpSession session = request.getSession();
+	session.setAttribute("uid", request.getParameter("uid"));
+	
+    return new ModelAndView("AccNoGeneration");
+    }
+    else{
+    message = "Sorry! User creation failed! please try again.";
+    return new ModelAndView("errorPage", "message", message);
+    }
 }
+
+
+
 
 @RequestMapping("/Forgot")  
 public ModelAndView ForgotPwd_Fun(HttpServletRequest request, HttpServletResponse response) {
@@ -220,6 +227,8 @@ public ModelAndView save_prof_fun(HttpServletRequest request, HttpServletRespons
 	  
 	  return new ModelAndView("DisplayMessagePage", "message", message); 
 }
+
+
 
 
 
