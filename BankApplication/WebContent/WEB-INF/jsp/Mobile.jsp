@@ -10,8 +10,8 @@
 <h2>${message}</h2> 
 <input type="text" name="mob"><br>
 <br>
-<form action ="Mobile.html" method="post">
-<input type="radio" name="pre" value="Prepaid"  > Pre-paid
+<form action ="Txn.html" method="post">
+<input type="radio" name="pre" value="Prepaid"  autocomplete="on" > Pre-paid
 <input type="radio" name="pre" value="Postpaid"> Post paid<br>
 <br>
 <h>Select your Operator</h>
