@@ -95,6 +95,7 @@ public ModelAndView multiAcc_fun(HttpServletRequest request, HttpServletResponse
 	return new ModelAndView("multiAcc", "message", message);
 }
 
+
 @RequestMapping("/FundsTransfer")
 public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 {
@@ -122,4 +123,39 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 	model.addAttribute("C_AccNo",C_AccNo);
 	return new ModelAndView("SelectAcc");
 }
+
+@RequestMapping("/NEFT")
+public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    String PayeeAccNo = request.getParameter("PayeeAccNo");
+    Double Amount = Double.parseDouble(request.getParameter("amount"));
+    String PayeeFullName = request.getParameter("PayeeFullName");
+    String fname = null;
+    String lname = null;
+    
+   int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname, Amount);
+    if(result==0)
+    {
+    	String message1= "Sorry! You have entered wrong account details. Please verify." ;
+    	return new ModelAndView("welcome");
+    }
+    
+    if(result==1)
+    {
+    	String message1="Sorry! You dont have enough balance.";
+    	return new ModelAndView("welcome");
+    }
+    
+    if(result==2)
+    {
+    	String message1="Amount of Rs."+Amount+" is successfully transfered to "+PayeeFullName+".";
+    	return new ModelAndView("welcome");
+    }
+    
+	return new ModelAndView("welcome");
+
+}
+
 }

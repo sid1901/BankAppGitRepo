@@ -15,6 +15,10 @@
     <option value="Savings" ${savings}> Savings - ${S_AccNo} </option>
     <option value="Current" ${current}> Current - ${C_AccNo} </option>
 </select></br>
+<input type="text" name="PayeeAccNo"> Enter Payee Acc No
+<input type="text" name="PayeeFullName"> Enter Payee Full Name 
+<input type="text" name="Amount"> Enter Amount to transfer
+</form>
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 </f:view>
 </body>

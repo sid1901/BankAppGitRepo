@@ -63,6 +63,23 @@ public class AccountDetailsDao {
 		}
 		
 	}
+
+	public int SearchAccountByAccNoAndF_L_Name(String payeeAccNo, String fname, String lname, Double amount) {
+		// TODO Auto-generated method stub
+		Integer result = 0;
+		String sql1 = "select count(*) from account_details A, customer_info C"
+				+ "where A.cust_uid = C.cust_uid"
+				+ "and A.acc_no= ?"
+				+ "and C.cust_fname = ? and and C.cust_lname = ?";
+		
+		result =  result + jdbcTemplate.queryForObject(
+				sql1, new Object[] { payeeAccNo, fname, lname }, Integer.class);
+		
+		
+		System.out.println("result is "+result);
+	
+	return 0;
+	}
 	
 	
 }
