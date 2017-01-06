@@ -8,17 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<f:view>
-<h>Select your Account Type</h>
+${message}
+<h>You can create multiple Accounts</h>
+<h>Choose account to create :</h>
 <form action="AccNoGen.html" method="post">
 <select name="AccType">
     <option value="Savings">Savings</option>
     <option value="Current">Current</option>
 </select></br>
-Enter Account Opening Balance: (minimum 500Rs/-)
-<input type="text" name="initAmt">
+Enter Account Opening Balance: <input type="text" name="initAmt">
 </br><input type="submit" value="confirm">
-</form>
-</f:view>
+<input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 </body>
 </html>

@@ -5,12 +5,15 @@
 <title>Spring MVC login example.</title> 
 </head> 
 <body> 
-<h2>${message}</h2><br/> 
+<h2>${message}</h2><br/>
+<h2>${message1}</h2><br/> 
+<h2>${message2}</h2><br/>  
 <%-- <h2>${UserName}</h2><br/> --%>  
 
 <input type="button" id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br>
 <input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br>
-<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input>
+<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br>
+<input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br>
 <br/>
 <br/>
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.BankingApp.Dao.AccountDetailsDao;
+import com.csc.BankingApp.Services.CommonServices;
 import com.csc.BankingApp.ValueObjects.AccountDetailsVO;
 
 
@@ -19,50 +20,78 @@ import com.csc.BankingApp.ValueObjects.AccountDetailsVO;
 @Controller
 public class AccountsController
 {
+	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
+    AccountDetailsDao accdao=(AccountDetailsDao)ctx.getBean("accdao");
+    
 @RequestMapping("/AccNoGen")
-public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
 {
-	//code to generate 10digit random acc no.
-		int len=10;
-		String ALPHA_NUM = "0123456789";
-		String AccNo =null;
-
-		StringBuffer sb = new StringBuffer(len);
-			for (int i = 0; i < len; i++) {
-				int ndx = (int) (Math.random() * ALPHA_NUM.length());
-				sb.append(ALPHA_NUM.charAt(ndx));
-			}
-			AccNo= sb.toString();
-	System.out.println("acc: "+AccNo);
-	
+	int AccTypeexists=0;
 	String AccType=request.getParameter("AccType");
+	Double InitAmt=Double.parseDouble(request.getParameter("initAmt"));
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    
+    AccTypeexists=accdao.findAccType(uid,AccType);
+	if(AccTypeexists==1)
+	{
+		String message = "You already have a "+AccType+" account.";
+		return new ModelAndView("multiAcc", "message", message);
+	}
+	
+	int NewUser=-1;
+	NewUser = accdao.findAccByUid(uid);
+	
+	//else if one acc exists then process and send to welcome
+	//else process and send to LoginPage
+	
+	
+	//Generate New accNo
+	String AccNo = null;
+	CommonServices commonServices= new CommonServices();
+	int valid=-1;
+	while(valid!=0)
+	{
+		AccNo= commonServices.randomNumGen();
+		valid=accdao.findAccNo(AccNo);
+	}
+	
 	System.out.println("Acctp: "+AccType);
 	//save AccNo and AccType in database
 	int status=0;
- 	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
-    AccountDetailsDao dao=(AccountDetailsDao)ctx.getBean("accdao");
     AccountDetailsVO obj = new AccountDetailsVO();
 	
     obj.setAcc_no(AccNo);
     obj.setAcc_type(AccType);
-    HttpSession session = request.getSession();
-    String uid=(String) session.getAttribute("uid");
+    obj.setAcc_curr_bal(InitAmt);
+     session = request.getSession();
+     uid=(String) session.getAttribute("uid");
     System.out.println("session uid: "+uid);
-    session.invalidate();
-    
-	status=dao.saveAccDetails(obj,uid);
-	if(status==0)
+    status=accdao.saveAccDetails(obj,uid);
+	if(status==1)
 	{
 	model.addAttribute("message1","Your account is successfully created!");
 	model.addAttribute("message2","Your account number is "+AccNo+".");
-	model.addAttribute("message3","Please login with your credentials.");
-	return new ModelAndView("LoginPage");
+		if(NewUser==1)
+		{
+			session.invalidate();
+			model.addAttribute("message3","Please login with your credentials.");
+			return new ModelAndView("LoginPage");
+		}
+		else
+			return new ModelAndView("welcome");
 	}
 	else
 		{
 		String message = "ERROR!";
 		return new ModelAndView("welcome", "message", message);
 		}
-}
+	}
+
+@RequestMapping("/multiAcc")
+public ModelAndView multiAcc_fun(HttpServletRequest request, HttpServletResponse response) 
+{
+	String message="Hello";
+	return new ModelAndView("multiAcc", "message", message);
 }
 }
