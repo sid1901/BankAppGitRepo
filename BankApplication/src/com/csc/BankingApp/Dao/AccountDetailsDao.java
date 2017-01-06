@@ -64,22 +64,53 @@ public class AccountDetailsDao {
 		
 	}
 
-	public int SearchAccountByAccNoAndF_L_Name(String payeeAccNo, String fname, String lname, Double amount) {
-		// TODO Auto-generated method stub
-		Integer result = 0;
-		String sql1 = "select count(*) from account_details A, customer_info C"
-				+ "where A.cust_uid = C.cust_uid"
-				+ "and A.acc_no= ?"
-				+ "and C.cust_fname = ? and and C.cust_lname = ?";
+	public int SearchAccountByAccNoAndF_L_Name(String payeeAccNo, String fname, String lname) {
 		
+		int result = 0;
+		// Check for Account existance
+		String sql1 = "select count(*) from account_details A, customer_info C "
+				+ "where A.cust_uid = C.cust_uid "
+				+ "and A.acc_no= ? "
+				+ "and C.cust_fname = ? and C.cust_lname = ?";
+		System.out.println(sql1);
+		
+		try{
 		result =  result + jdbcTemplate.queryForObject(
 				sql1, new Object[] { payeeAccNo, fname, lname }, Integer.class);
+		}
+		catch(Exception e) {
+			result = 0;
+			return result;
+		}
 		
+		return result;
 		
-		System.out.println("result is "+result);
-	
-	return 0;
 	}
 	
 	
+	public int CheckForEnoughBalAndDeduct(String AccNo, Double amount, String PayeeAccNo) {
+	
+	// Check for sufficient Account Balance.
+			String sql1 = "select acc_curr_bal from account_details where acc_no = '" +AccNo+"'";
+			int available = jdbcTemplate.queryForInt(sql1);
+			if(available < amount)
+			{
+				int result = 0;
+				return result;
+			}
+			
+			// Deduct Money from account.
+			String sql2 = "update account_details set acc_curr_bal= acc_curr_bal - " +amount
+					+ " where acc_no= '" +AccNo+"'";
+					int result=jdbcTemplate.update(sql2);
+					System.out.println("result is "+result);
+				
+			// Add Money to Payed.
+				String sql3 = "update account_details set acc_curr_bal= acc_curr_bal - " +amount
+							+ " where acc_no= '" +AccNo+"'";
+							 result=result+jdbcTemplate.update(sql3);
+							System.out.println("result is "+result);
+								
+					return result;
+	}
 }

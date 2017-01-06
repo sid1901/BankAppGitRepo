@@ -105,7 +105,6 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 	String cur_attr = "disabled='disabled'";;
 	String Enable_Attr = "enabled='enabled'";
 	
-	
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     
@@ -127,30 +126,45 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 @RequestMapping("/NEFT")
 public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 {
+	System.out.println("HERE");
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     String PayeeAccNo = request.getParameter("PayeeAccNo");
-    Double Amount = Double.parseDouble(request.getParameter("amount"));
+    Double Amount = Double.parseDouble(request.getParameter("Amount"));
     String PayeeFullName = request.getParameter("PayeeFullName");
+    String AccType = request.getParameter("AccType");
+    
+    //Separate fname and lname
     String fname = null;
     String lname = null;
     
-   int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname, Amount);
-    if(result==0)
+    int index=PayeeFullName.indexOf(" ");
+    fname = PayeeFullName.substring(0, index);
+    lname = PayeeFullName.substring(index+1,PayeeFullName.length());
+    
+    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
+    System.out.println("Final result is "+result);
+    if(result=='0')
     {
-    	String message1= "Sorry! You have entered wrong account details. Please verify." ;
+    	String message1="Sorry! You have entered wrong account details. Please verify." ;
+    	model.addAttribute("message1",message1);
     	return new ModelAndView("welcome");
     }
     
-    if(result==1)
+    
+    String AccNo = accdao.FindAccNoByUidAndType(uid,AccType);
+    result = accdao.CheckForEnoughBalAndDeduct(AccNo,Amount,PayeeAccNo);
+    if(result==0)
     {
     	String message1="Sorry! You dont have enough balance.";
+    	model.addAttribute("message1",message1);
     	return new ModelAndView("welcome");
     }
     
     if(result==2)
     {
     	String message1="Amount of Rs."+Amount+" is successfully transfered to "+PayeeFullName+".";
+    	model.addAttribute("message1",message1);
     	return new ModelAndView("welcome");
     }
     
