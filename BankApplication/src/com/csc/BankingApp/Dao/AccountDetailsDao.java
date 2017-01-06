@@ -46,6 +46,23 @@ public class AccountDetailsDao {
 		else 
 			return 0;
 	}
+
+	public String FindAccNoByUidAndType(String uid, String acc_type) {
+
+		try{
+		String sql = "SELECT ACC_NO FROM ACCOUNT_DETAILS WHERE CUST_UID = ? AND ACC_TYPE= ? ";
+		//	String sql = "SELECT ACC_NO FROM ACCOUNT_DETAILS WHERE CUST_UID = '"+uid+"' AND ACC_TYPE= '"+acc_type+ "'";
+		String acc_no = (String)jdbcTemplate.queryForObject(
+				sql, new Object[] { uid, acc_type }, String.class);
+		return acc_no;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return "NA";
+		}
+		
+	}
 	
 	
 }

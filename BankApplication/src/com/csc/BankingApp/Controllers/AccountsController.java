@@ -94,4 +94,32 @@ public ModelAndView multiAcc_fun(HttpServletRequest request, HttpServletResponse
 	String message="Hello";
 	return new ModelAndView("multiAcc", "message", message);
 }
+
+@RequestMapping("/FundsTransfer")
+public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	String S_AccNo = null;
+	String C_AccNo = null;
+	String sav_attr = "disabled='disabled'";;
+	String cur_attr = "disabled='disabled'";;
+	String Enable_Attr = "enabled='enabled'";
+	
+	
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    
+    S_AccNo=accdao.FindAccNoByUidAndType(uid,"Savings");
+    C_AccNo=accdao.FindAccNoByUidAndType(uid,"Current");
+	
+    if (S_AccNo != "NA")
+    	sav_attr=Enable_Attr;
+    if (C_AccNo != "NA")
+    	cur_attr=Enable_Attr;
+    
+	model.addAttribute("savings", sav_attr);
+	model.addAttribute("current", cur_attr);
+	model.addAttribute("S_AccNo",S_AccNo);
+	model.addAttribute("C_AccNo",C_AccNo);
+	return new ModelAndView("SelectAcc");
+}
 }

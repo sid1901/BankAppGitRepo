@@ -9,16 +9,12 @@
 </head>
 <body>
 <f:view>
-<h>Select your Account Type</h>
-<form action="AccNoGen.html" method="post">
+<h>Select Your Account :</h>
+<form action="NEFT.html" method="post">
 <select name="AccType">
-    <option value="Savings">Savings</option>
-    <option value="Current">Current</option>
+    <option value="Savings" ${savings}> Savings - ${S_AccNo} </option>
+    <option value="Current" ${current}> Current - ${C_AccNo} </option>
 </select></br>
-Enter Account Opening Balance: (minimum 500Rs/-)
-<input type="text" name="initAmt">
-</br><input type="submit" value="confirm">
-</form>
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 </f:view>
 </body>
