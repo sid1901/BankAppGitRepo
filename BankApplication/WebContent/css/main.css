@@ -1,0 +1,38 @@
+
+h1 {
+    color: black;
+    margin-left: 20px;
+    text-align: center;
+}
+
+header {
+    padding: 1em;
+    color: black;
+    background-color: #808080;
+    clear: left;
+    text-align: center;
+}
+
+ footer {
+    padding: 1em;
+    color: black;
+    background-color: #808080;
+    clear: left;
+    text-align: center;
+   	bottom:0;
+}
+
+.right-sidebar .ad-block {
+	background-color: #ff8040;
+	height: 80px;
+	margin: 10px 10px 15px 10px;
+}
+.right-sidebar {
+	background-color: #ff8040;
+	height: 360px;
+	text-align: center;
+	margin: 10px 10px 15px 10px;
+	
+}
+
+

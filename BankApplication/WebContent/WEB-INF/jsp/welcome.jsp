@@ -4,19 +4,29 @@
 
 <title>Spring MVC login example.</title> 
 </head> 
+  <link rel="stylesheet" href="css/main.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <body> 
-<h2>${message}</h2><br/>
-<h2>${message1}</h2><br/> 
-<h2>${message2}</h2><br/>  
+<header>
+<h2>${message}</h2>
+<h2>${message1}</h2> 
+<h2>${message2}</h2>  
 <%-- <h2>${UserName}</h2><br/> --%>  
+</header>
 
-<input type="button" id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br>
-<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br>
-<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br>
-<input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br>
-<br/>
-<br/>
-	
+
+
+<!--right sidebar-->   
+        <div class="col-sm-4">
+        
+        	<div class="right-sidebar bg-white">
+        	
+        	
+  <div class="ad-block"><h1>Categories</h1></div>
+<input type="button"  id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br></br>
+<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br></br>
+<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br></br>
+<input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br></br>
 
 <% 
 String uid = (String) session.getAttribute("uid");
@@ -24,7 +34,7 @@ String uid = (String) session.getAttribute("uid");
 
 Logged in id=<%=uid %>
 <br/>
-<br/>
+
    
 <form action="Logout.html" method="post">
 <input type="submit" value="Logout" >
@@ -35,6 +45,20 @@ response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
 response.setHeader("Pragma","no-cache");
 response.setDateHeader("Expires", 0);
 
-%> 	
+%>
+        	</div>
+           
+   </div> <div class="left-sidebar bg-white">
+            	<div class="row">
+            		<div class="col-sm-12">
+                		<div class="ad-block"><h1>Categories1</h1></div>
+                	</div>
+                </div>
+            </div>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+</br></br></br>
+ 
 </body> 
+</br></br></br></br></br></br></br></br></br></br></br></br>
+<footer>Copyright &copy; ssa.com</footer>
 </html>
