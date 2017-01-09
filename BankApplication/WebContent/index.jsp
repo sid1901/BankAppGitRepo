@@ -25,6 +25,5 @@
 </br>
 	</form>
 	<a href="Register.html"> Click for new user regiseration</a>
- 	
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.csc.BankingApp.Controllers;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -116,10 +118,28 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
     if (C_AccNo != "NA")
     	cur_attr=Enable_Attr;
     
-	model.addAttribute("savings", sav_attr);
+    model.addAttribute("savings", sav_attr);
 	model.addAttribute("current", cur_attr);
 	model.addAttribute("S_AccNo",S_AccNo);
 	model.addAttribute("C_AccNo",C_AccNo);
+	
+	HashMap<String, String> dept = new HashMap<String, String>();
+	dept.put("A_key", "A_vale");
+	dept.put("B_key", "B_vale");
+	dept.put("C_key", "C_vale");
+	dept.put("D_key", "D_vale");
+	
+	String s = "java is a java";
+	String array[]=s.split("a");
+	
+	System.out.println("Printing "+array.length);
+
+
+	
+	
+	model.addAttribute("dept",dept);
+	
+	
 	return new ModelAndView("SelectAcc");
 }
 
@@ -177,5 +197,16 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
 	return new ModelAndView("welcome");
 
 }
+
+
+
+@RequestMapping("/AddPayee")
+public ModelAndView AddPayee_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	
+	return new ModelAndView("AddPayee");
+}
+
+
 
 }
