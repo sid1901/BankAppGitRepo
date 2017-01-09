@@ -24,7 +24,7 @@ public class AccountsController
 {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
     AccountDetailsDao accdao=(AccountDetailsDao)ctx.getBean("accdao");
-    
+    //
 @RequestMapping("/AccNoGen")
 public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
 {
