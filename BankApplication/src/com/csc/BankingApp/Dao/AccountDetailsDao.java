@@ -113,4 +113,21 @@ public class AccountDetailsDao {
 								
 					return result;
 	}
+
+	public int addPayeeInDB(String payeeAccNo, String uid, String payeeNickName) {
+		// TODO Auto-generated method stub
+		String query="insert into payee_details (payee_acc_no,payee_linked_uid,payee_nickname,payee_created_date) "
+				+ "values ('"+ payeeAccNo +"','"+uid+"','"+payeeNickName+"',curtime())" ;
+				
+			    int results=0;
+			    results=jdbcTemplate.update(query);
+			     return results;
+		
+	}
+
+	public String[] findPayeeNo_NickName_ByUID(String uid) {
+		// TODO Auto-generated method stub
+		String query="select concat(payee_nickname,'-',payee_acc_no) from payee_details where payee_linked_uid='"+uid+"'";
+		return null;
+	}
 }

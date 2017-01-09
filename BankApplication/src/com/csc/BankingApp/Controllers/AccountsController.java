@@ -2,6 +2,7 @@ package com.csc.BankingApp.Controllers;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -123,22 +124,17 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 	model.addAttribute("S_AccNo",S_AccNo);
 	model.addAttribute("C_AccNo",C_AccNo);
 	
-	HashMap<String, String> dept = new HashMap<String, String>();
-	dept.put("A_key", "A_vale");
-	dept.put("B_key", "B_vale");
-	dept.put("C_key", "C_vale");
-	dept.put("D_key", "D_vale");
-	
-	String s = "java is a java";
-	String array[]=s.split("a");
-	
-	System.out.println("Printing "+array.length);
-
-
 	
 	
-	model.addAttribute("dept",dept);
+	TreeMap<String, String> payees = new TreeMap<String, String>();
+	payees.put("A_key", "A_vale");
+	payees.put("B_key", "B_vale");
+	payees.put("C_key", "C_vale");
+	payees.put("D_key", "D_vale");
 	
+	String arr[] = accdao.findPayeeNo_NickName_ByUID(uid);
+	
+	model.addAttribute("payees",payees);
 	
 	return new ModelAndView("SelectAcc");
 }
@@ -202,10 +198,63 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
 
 @RequestMapping("/AddPayee")
 public ModelAndView AddPayee_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
-{
-	
+{	
 	return new ModelAndView("AddPayee");
 }
+
+
+@RequestMapping("/verifyPayee")
+public ModelAndView verifyPayee_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    String PayeeAccNo = request.getParameter("PayeeAccNo");
+    String PayeeFullName = request.getParameter("PayeeFullName");
+    String PayeeNickName = request.getParameter("PayeeNickName");
+   
+    
+    //Separate fname and lname
+    String fname = null;
+    String lname = null;
+    
+    int index=PayeeFullName.indexOf(" ");
+    fname = PayeeFullName.substring(0, index);
+    lname = PayeeFullName.substring(index+1,PayeeFullName.length());
+    
+    System.out.println("PayeeNo " + PayeeAccNo);
+    System.out.println("Fname "+ fname);
+    System.out.println("lname "+ lname);
+    
+    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
+    System.out.println("First result is "+result);
+    if(result==0)
+    {
+    	String message1="Sorry! You have entered wrong account details. Please verify." ;
+    	model.addAttribute("message1",message1);
+    	return new ModelAndView("welcome");
+    }
+	
+    else
+    {
+    	int ins_result = accdao.addPayeeInDB(PayeeAccNo,uid,PayeeNickName);
+    	if(ins_result==1){    	
+    	String message1=fname+" is successfully added to your Payee List." ;
+    	String message2= "You can now transfer funds to "+fname+" after two minutes." ;
+    	model.addAttribute("message1",message1);
+    	model.addAttribute("message2",message2);
+    	return new ModelAndView("welcome");
+    	}
+    	else
+    	{
+    		String message1="Something went wrong! Please try again." ;
+        	model.addAttribute("message1",message1);
+        	return new ModelAndView("welcome");
+    	}
+    }
+	
+}
+
 
 
 
