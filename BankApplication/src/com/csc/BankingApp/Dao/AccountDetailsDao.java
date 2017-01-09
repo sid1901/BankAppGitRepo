@@ -101,13 +101,13 @@ public class AccountDetailsDao {
 			
 			// Deduct Money from account.
 			String sql2 = "update account_details set acc_curr_bal= acc_curr_bal - " +amount
-					+ " where acc_no= '" +AccNo+"'";
+					+ " , acc_last_updated= curdate() where acc_no= '" +AccNo+"'" ;
 					int result=jdbcTemplate.update(sql2);
 					System.out.println("result is "+result);
 				
 			// Add Money to Payed.
-				String sql3 = "update account_details set acc_curr_bal= acc_curr_bal - " +amount
-							+ " where acc_no= '" +AccNo+"'";
+				String sql3 = "update account_details set acc_curr_bal= acc_curr_bal + " +amount
+							+ " , acc_last_updated= curdate() where acc_no= '" +PayeeAccNo+"'";
 							 result=result+jdbcTemplate.update(sql3);
 							System.out.println("result is "+result);
 								

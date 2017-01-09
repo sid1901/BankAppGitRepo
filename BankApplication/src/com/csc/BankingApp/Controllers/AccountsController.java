@@ -126,7 +126,7 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 @RequestMapping("/NEFT")
 public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 {
-	System.out.println("HERE");
+	
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     String PayeeAccNo = request.getParameter("PayeeAccNo");
@@ -142,9 +142,13 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
     fname = PayeeFullName.substring(0, index);
     lname = PayeeFullName.substring(index+1,PayeeFullName.length());
     
+    System.out.println("PayeeNo " + PayeeAccNo);
+    System.out.println("Fname "+ fname);
+    System.out.println("lname "+ lname);
+    
     int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
-    System.out.println("Final result is "+result);
-    if(result=='0')
+    System.out.println("First result is "+result);
+    if(result==0)
     {
     	String message1="Sorry! You have entered wrong account details. Please verify." ;
     	model.addAttribute("message1",message1);
@@ -154,6 +158,8 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
     
     String AccNo = accdao.FindAccNoByUidAndType(uid,AccType);
     result = accdao.CheckForEnoughBalAndDeduct(AccNo,Amount,PayeeAccNo);
+    System.out.println("Second result is "+result);
+    
     if(result==0)
     {
     	String message1="Sorry! You dont have enough balance.";
