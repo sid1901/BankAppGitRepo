@@ -9,17 +9,27 @@
 </head>
 <body>
 <f:view>
-<h>Select your Account Type</h>
-<form action="AccNoGen.html" method="post">
-<select name="AccType">
-    <option value="Savings">Savings</option>
-    <option value="Current">Current</option>
-</select></br>
-Enter Account Opening Balance: (minimum 500Rs/-)
-<input type="text" name="initAmt">
-</br><input type="submit" value="confirm">
-</form>
+
+<h></br></h>
+Confirm Payee/Biller </br>
+
+DETAILS>CONFIRMATION </br></br>
+<h></br></h>
+Add Bank Payee </br>
+<h></br></h>
+<form action="verifyPayee.html" method = "post">
+
+Payee Account Name* <input type="text" name="PayeeFullName">  </input> </br> 
+Payee Nickname* <input type="text" name="PayeeNickName">  </input> </br>
+Payee Account Number* <input type="text" name="PayeeAccNo">  </input> </br>
+Confirm Payee Account Number* <input type="text" name="PayeeAccNo2">  </input> </br>
+
+Ensure that the payee account number entered is correct so that money is transferred to the intended payee.
+  
+<input type="submit" value = "Confirm">  
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
+
+</form>
 </f:view>
 </body>
 </html>

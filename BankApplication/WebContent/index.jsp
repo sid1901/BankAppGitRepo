@@ -40,6 +40,7 @@
 </div><!-- container -->
 
 </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+	<a href="Register.html"> Click for new user regiseration</a>
 </body>
   <footer>Copyright &copy; ssa.com</footer>
     <script src="js/index.js"></script>

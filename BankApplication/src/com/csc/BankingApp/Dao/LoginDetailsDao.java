@@ -86,8 +86,8 @@ public String FindEmailByUid(String uid) {
 	String sql = "SELECT CUST_EMAIL FROM CUSTOMER_INFO WHERE CUST_UID = ?";
 
 	try{
-	String email = (String)jdbcTemplate.queryForObject(
-			sql, new Object[] { uid }, String.class);
+		String email = (String)jdbcTemplate.queryForObject(
+				sql, new Object[] { uid }, String.class);
 	
 	return email;
 	}

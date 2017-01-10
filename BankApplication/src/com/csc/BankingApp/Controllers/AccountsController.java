@@ -1,6 +1,9 @@
 package com.csc.BankingApp.Controllers;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashMap;
+import java.util.TreeMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +25,7 @@ public class AccountsController
 {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
     AccountDetailsDao accdao=(AccountDetailsDao)ctx.getBean("accdao");
-    
+    //
 @RequestMapping("/AccNoGen")
 public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
 {
@@ -94,4 +97,165 @@ public ModelAndView multiAcc_fun(HttpServletRequest request, HttpServletResponse
 	String message="Hello";
 	return new ModelAndView("multiAcc", "message", message);
 }
+
+
+@RequestMapping("/FundsTransfer")
+public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	String S_AccNo = null;
+	String C_AccNo = null;
+	String sav_attr = "disabled='disabled'";;
+	String cur_attr = "disabled='disabled'";;
+	String Enable_Attr = "enabled='enabled'";
+	
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    
+    S_AccNo=accdao.FindAccNoByUidAndType(uid,"Savings");
+    C_AccNo=accdao.FindAccNoByUidAndType(uid,"Current");
+	
+    if (S_AccNo != "NA")
+    	sav_attr=Enable_Attr;
+    if (C_AccNo != "NA")
+    	cur_attr=Enable_Attr;
+    
+    model.addAttribute("savings", sav_attr);
+	model.addAttribute("current", cur_attr);
+	model.addAttribute("S_AccNo",S_AccNo);
+	model.addAttribute("C_AccNo",C_AccNo);
+	
+	
+	
+	TreeMap<String, String> payees = new TreeMap<String, String>();
+	payees.put("A_key", "A_vale");
+	payees.put("B_key", "B_vale");
+	payees.put("C_key", "C_vale");
+	payees.put("D_key", "D_vale");
+	
+	String arr[] = accdao.findPayeeNo_NickName_ByUID(uid);
+	
+	model.addAttribute("payees",payees);
+	
+	return new ModelAndView("SelectAcc");
+}
+
+@RequestMapping("/NEFT")
+public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    String PayeeAccNo = request.getParameter("PayeeAccNo");
+    Double Amount = Double.parseDouble(request.getParameter("Amount"));
+    String PayeeFullName = request.getParameter("PayeeFullName");
+    String AccType = request.getParameter("AccType");
+    
+    //Separate fname and lname
+    String fname = null;
+    String lname = null;
+    
+    int index=PayeeFullName.indexOf(" ");
+    fname = PayeeFullName.substring(0, index);
+    lname = PayeeFullName.substring(index+1,PayeeFullName.length());
+    
+    System.out.println("PayeeNo " + PayeeAccNo);
+    System.out.println("Fname "+ fname);
+    System.out.println("lname "+ lname);
+    
+    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
+    System.out.println("First result is "+result);
+    if(result==0)
+    {
+    	String message1="Sorry! You have entered wrong account details. Please verify." ;
+    	model.addAttribute("message1",message1);
+    	return new ModelAndView("welcome");
+    }
+    
+    
+    String AccNo = accdao.FindAccNoByUidAndType(uid,AccType);
+    result = accdao.CheckForEnoughBalAndDeduct(AccNo,Amount,PayeeAccNo);
+    System.out.println("Second result is "+result);
+    
+    if(result==0)
+    {
+    	String message1="Sorry! You dont have enough balance.";
+    	model.addAttribute("message1",message1);
+    	return new ModelAndView("welcome");
+    }
+    
+    if(result==2)
+    {
+    	String message1="Amount of Rs."+Amount+" is successfully transfered to "+PayeeFullName+".";
+    	model.addAttribute("message1",message1);
+    	return new ModelAndView("welcome");
+    }
+    
+	return new ModelAndView("welcome");
+
+}
+
+
+
+@RequestMapping("/AddPayee")
+public ModelAndView AddPayee_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{	
+	return new ModelAndView("AddPayee");
+}
+
+
+@RequestMapping("/verifyPayee")
+public ModelAndView verifyPayee_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+{
+	
+	HttpSession session = request.getSession();
+    String uid=(String) session.getAttribute("uid");
+    String PayeeAccNo = request.getParameter("PayeeAccNo");
+    String PayeeFullName = request.getParameter("PayeeFullName");
+    String PayeeNickName = request.getParameter("PayeeNickName");
+   
+    
+    //Separate fname and lname
+    String fname = null;
+    String lname = null;
+    
+    int index=PayeeFullName.indexOf(" ");
+    fname = PayeeFullName.substring(0, index);
+    lname = PayeeFullName.substring(index+1,PayeeFullName.length());
+    
+    System.out.println("PayeeNo " + PayeeAccNo);
+    System.out.println("Fname "+ fname);
+    System.out.println("lname "+ lname);
+    
+    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
+    System.out.println("First result is "+result);
+    if(result==0)
+    {
+    	String message1="Sorry! You have entered wrong account details. Please verify." ;
+    	model.addAttribute("message1",message1);
+    	return new ModelAndView("welcome");
+    }
+	
+    else
+    {
+    	int ins_result = accdao.addPayeeInDB(PayeeAccNo,uid,PayeeNickName);
+    	if(ins_result==1){    	
+    	String message1=fname+" is successfully added to your Payee List." ;
+    	String message2= "You can now transfer funds to "+fname+" after two minutes." ;
+    	model.addAttribute("message1",message1);
+    	model.addAttribute("message2",message2);
+    	return new ModelAndView("welcome");
+    	}
+    	else
+    	{
+    		String message1="Something went wrong! Please try again." ;
+        	model.addAttribute("message1",message1);
+        	return new ModelAndView("welcome");
+    	}
+    }
+	
+}
+
+
+
+
 }

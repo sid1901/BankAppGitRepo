@@ -14,6 +14,7 @@
 <h2>${message2}</h2>  
 <%-- <h2>${UserName}</h2><br/> --%>  
 
+<<<<<<< HEAD
 
 
 
@@ -27,6 +28,17 @@
 <input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br></br>
 <input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br></br>
 <input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br></br>
+=======
+<input type="button" id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br>
+<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br>
+<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br>
+<input type="button" id="services" value = "Open multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br>
+<input type="button" id="services" value = "Funds Transfer" onclick="location.href='/BankApplication/FundsTransfer.html'" ></input></br>
+<input type="button" id="b3" value = "Add Payee" onclick="location.href='/BankApplication/AddPayee.html'"></input>
+<br/>
+<br/>
+	
+>>>>>>> branch 'master' of https://github.com/sid1901/BankAppGitRepo.git
 
 <% 
 String uid = (String) session.getAttribute("uid");
