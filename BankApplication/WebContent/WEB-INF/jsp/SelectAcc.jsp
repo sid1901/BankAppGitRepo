@@ -32,7 +32,8 @@ Initiate Fund Transfer
         </select>
 
 <h></br></h>
-<input type="text" name="Amount"> Enter Amount to transfer </input> </br>
+<h></br></h>
+Enter Amount to transfer <input type="text" name="Amount"> </input> </br>
 
 <!-- <input type="text" name="PayeeAccNo"> Enter Payee Acc No </input> </br>
 <input type="text" name="PayeeFullName"> Enter Payee Full Name </input> </br>

@@ -5,6 +5,7 @@ public class AccountDetailsVO {
 	public AccountDetailsVO(){}
 	
 	// private attributes
+	private String cust_uid;
 	private String acc_no;
 	private String acc_type;
 	private double acc_curr_bal;
@@ -13,9 +14,16 @@ public class AccountDetailsVO {
 	private int payee_id;
 	private String payee_acc_no;
 	private String payee_nick_name;
+	private double transfer_amount;
 	
 	
 	// getters and setters
+	public String getCust_uid() {
+		return cust_uid;
+	}
+	public void setCust_uid(String cust_uid) {
+		this.cust_uid = cust_uid;
+	}
 	public String getAcc_no() {
 		return acc_no;
 	}
@@ -64,5 +72,12 @@ public class AccountDetailsVO {
 	public void setPayee_nick_name(String payee_nick_name) {
 		this.payee_nick_name = payee_nick_name;
 	}
+	public double getTransfer_amount() {
+		return transfer_amount;
+	}
+	public void setTransfer_amount(double transfer_amount) {
+		this.transfer_amount = transfer_amount;
+	}
+	
 
 }
