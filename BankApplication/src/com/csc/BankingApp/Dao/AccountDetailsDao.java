@@ -1,5 +1,7 @@
 package com.csc.BankingApp.Dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.csc.BankingApp.ValueObjects.AccountDetailsVO;
@@ -125,9 +127,27 @@ public class AccountDetailsDao {
 		
 	}
 
-	public String[] findPayeeNo_NickName_ByUID(String uid) {
+	public List findPayeeNo_NickName_ByUID(String uid) {
 		// TODO Auto-generated method stub
-		String query="select concat(payee_nickname,'-',payee_acc_no) from payee_details where payee_linked_uid='"+uid+"'";
-		return null;
+		String query="select concat(payee_nickname,'-',payee_acc_no) from payee_details where payee_linked_uid=?";
+		//String Payee_nick_no = (String)jdbcTemplate.queryForObject(
+		//		query, new Object[] { uid}, String.class);
+		
+		List Payee_nick_no1 = jdbcTemplate.queryForList(query, new Object[] {uid}, String.class);
+	//	List Payee_nick_no1 = jdbcTemplate.
+		return Payee_nick_no1;
+		
+	}
+
+	public int FindActivePayeeByUidAndPayeeAccNo(String uid, String payeeAccNo) {
+		// TODO Auto-generated method stub
+		
+		String query="SELECT TIMESTAMPDIFF(SECOND, payee_created_date, now()) from payee_details where "
+				+ "payee_acc_no=? and payee_linked_uid= ?";
+		
+		int sec_diff = jdbcTemplate.queryForObject(query, new Object[] {payeeAccNo,uid}, Integer.class);
+		
+		return sec_diff;
+					
 	}
 }

@@ -25,6 +25,7 @@ Payee Account Number* <input type="text" name="PayeeAccNo">  </input> </br>
 Confirm Payee Account Number* <input type="text" name="PayeeAccNo2">  </input> </br>
 
 Ensure that the payee account number entered is correct so that money is transferred to the intended payee.
+<h3>Please Note : Once payee is added, You can initiate funds transfer only after two minutes.</h3>
   
 <input type="submit" value = "Confirm">  
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
