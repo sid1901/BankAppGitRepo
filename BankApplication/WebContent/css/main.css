@@ -36,3 +36,21 @@ header {
 }
 
 
+.main-content .ad-block {
+	background-color: #F0F0F0;
+	height: 80px;
+	width: 30%;
+	margin: 10px;
+}
+
+.main-content  {
+	height: 200px;
+}
+
+.main-content .ad-block {
+	background-color: #F0F0F0;
+	height: 80px;
+	width: auto;
+}
+
+

@@ -15,7 +15,8 @@
 </script>
 
 <body>
- 	<header  style="text-align: center;">Welcome to Web based banking application</header> </br>
+		<header  style="text-align: center;">SSA BANK</header> </br>
+ 	<h1  style="text-align: center;">Welcome to Web based banking application</h1> </br>
 <div class="container">
 	<section id="content">
 		
