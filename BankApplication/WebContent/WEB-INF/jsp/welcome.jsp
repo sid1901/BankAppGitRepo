@@ -27,7 +27,6 @@
     
     <!--sidebar and content-->
 
-<<<<<<< HEAD
   	
     	<!--left sidebar-->
 		<div class="col-sm-3">
@@ -64,34 +63,7 @@
 						
 						%>
 						        	
-                   	
-=======
 
-
-<!--right sidebar-->   
-        <div class="col-sm-4">
-        
-        	<div class="right-sidebar bg-white">
->>>>>>> branch 'master' of https://github.com/sid1901/BankAppGitRepo.git
-        	
-<<<<<<< HEAD
-        	
-            	
-            </div>
-        </div>  
-=======
-<div class="ad-block"><h1>Shortcuts</h1></div>
-<input type="button"  id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br></br>
-<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br></br>
-<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br></br>
-<input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br></br>
-<input type="button" id="services" value = "Open multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br>
-<input type="button" id="services" value = "Funds Transfer" onclick="location.href='/BankApplication/FundsTransfer.html'" ></input></br>
-<input type="button" id="b3" value = "Add Payee" onclick="location.href='/BankApplication/AddPayee.html'"></input>
-<br/>
-<br/>
-	
->>>>>>> branch 'master' of https://github.com/sid1901/BankAppGitRepo.git
 
               
         <div class="col-sm-5">
