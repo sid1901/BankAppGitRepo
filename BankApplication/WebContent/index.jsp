@@ -5,6 +5,8 @@
 <head>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/main.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Banking App</title>
 <script type="text/javascript">
@@ -26,10 +28,12 @@
 			
 		<input type="text" name="uid" required="" id="username" placeholder="Username"/> </br></br>
 		<input type="password" name="pwd" required="" id="password" placeholder="password " /></br> 
-	<a href="Forgot.html" > Forgot Password? </a>	</br></br>	<a href="Register.html">  New user</a></br>
+	<a href="Forgot.html" > Forgot Password? </a>	</br>	<a href="Register.html">  New user</a></br>
+
 	<%--<jsp:forward page="/WEB-INF/jsp/ForgotPWDPage.jsp"></jsp:forward> --%>
 		<input type="submit" value="Submit" /></br>
 </br>
+	
 </br>
 </br></br></br></br>
 	</form>
@@ -39,13 +43,13 @@
 	</section><!-- content -->
 </div><!-- container -->
 
-</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-	<a href="Register.html"> Click for new user regiseration</a>
+
+
 </body>
   <footer>Copyright &copy; ssa.com</footer>
     <script src="js/index.js"></script>
 
 
-</head>
+
 
 </html>
