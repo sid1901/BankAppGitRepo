@@ -2,6 +2,8 @@ package com.csc.BankingApp.Controllers;
 import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.csc.BankingApp.Dao.AccountDetailsDao;
 import com.csc.BankingApp.Services.CommonServices;
 import com.csc.BankingApp.ValueObjects.AccountDetailsVO;
-
+import com.csc.BankingApp.ValueObjects.LoginVO;
 
 
 @Controller
@@ -25,7 +27,7 @@ public class AccountsController
 {
 	ApplicationContext ctx=new ClassPathXmlApplicationContext("BeanConfig.xml");  
     AccountDetailsDao accdao=(AccountDetailsDao)ctx.getBean("accdao");
-    //
+
 @RequestMapping("/AccNoGen")
 public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
 {
@@ -35,7 +37,10 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     
-    AccTypeexists=accdao.findAccType(uid,AccType);
+    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
+    accountDetailsVO.setCust_uid(uid);
+    accountDetailsVO.setAcc_type(AccType);
+    AccTypeexists=accdao.findAccType(accountDetailsVO);
 	if(AccTypeexists==1)
 	{
 		String message = "You already have a "+AccType+" account.";
@@ -43,11 +48,7 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
 	}
 	
 	int NewUser=-1;
-	NewUser = accdao.findAccByUid(uid);
-	
-	//else if one acc exists then process and send to welcome
-	//else process and send to LoginPage
-	
+	NewUser = accdao.findAccByUid(accountDetailsVO);
 	
 	//Generate New accNo
 	String AccNo = null;
@@ -59,18 +60,14 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
 		valid=accdao.findAccNo(AccNo);
 	}
 	
-	System.out.println("Acctp: "+AccType);
 	//save AccNo and AccType in database
 	int status=0;
-    AccountDetailsVO obj = new AccountDetailsVO();
-	
-    obj.setAcc_no(AccNo);
-    obj.setAcc_type(AccType);
-    obj.setAcc_curr_bal(InitAmt);
+   
+	accountDetailsVO.setAcc_no(AccNo);
+	accountDetailsVO.setAcc_curr_bal(InitAmt);
      session = request.getSession();
      uid=(String) session.getAttribute("uid");
-    System.out.println("session uid: "+uid);
-    status=accdao.saveAccDetails(obj,uid);
+    status=accdao.saveAccDetails(accountDetailsVO);
 	if(status==1)
 	{
 	model.addAttribute("message1","Your account is successfully created!");
@@ -111,9 +108,15 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
     
-    S_AccNo=accdao.FindAccNoByUidAndType(uid,"Savings");
-    C_AccNo=accdao.FindAccNoByUidAndType(uid,"Current");
-	
+    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
+    accountDetailsVO.setCust_uid(uid);
+    accountDetailsVO.setAcc_type("Savings");;
+    accountDetailsVO=accdao.FindAccNoByUidAndType(accountDetailsVO);
+    S_AccNo=accountDetailsVO.getAcc_no();
+    accountDetailsVO.setAcc_type("Current");;
+    accountDetailsVO=accdao.FindAccNoByUidAndType(accountDetailsVO);
+    C_AccNo=accountDetailsVO.getAcc_no();
+    
     if (S_AccNo != "NA")
     	sav_attr=Enable_Attr;
     if (C_AccNo != "NA")
@@ -124,15 +127,18 @@ public ModelAndView FundsTransfer_fun(HttpServletRequest request, HttpServletRes
 	model.addAttribute("S_AccNo",S_AccNo);
 	model.addAttribute("C_AccNo",C_AccNo);
 	
-	
-	
 	TreeMap<String, String> payees = new TreeMap<String, String>();
-	payees.put("A_key", "A_vale");
-	payees.put("B_key", "B_vale");
-	payees.put("C_key", "C_vale");
-	payees.put("D_key", "D_vale");
 	
-	String arr[] = accdao.findPayeeNo_NickName_ByUID(uid);
+	List Payee_nick_no_list = accdao.findPayeeNo_NickName_ByUID(uid);
+	Iterator it = Payee_nick_no_list.iterator();
+	
+	while(it.hasNext()){
+		String value = (it.next()).toString();
+		String Nick_Num[] = value.split("-");
+		String nick = Nick_Num[0];
+		String Num = Nick_Num[1];
+		payees.put(Num,value);
+	}
 	
 	model.addAttribute("payees",payees);
 	
@@ -145,36 +151,25 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
 	
 	HttpSession session = request.getSession();
     String uid=(String) session.getAttribute("uid");
-    String PayeeAccNo = request.getParameter("PayeeAccNo");
+    String PayeeAccNo = request.getParameter("Payee");
     Double Amount = Double.parseDouble(request.getParameter("Amount"));
-    String PayeeFullName = request.getParameter("PayeeFullName");
     String AccType = request.getParameter("AccType");
-    
-    //Separate fname and lname
-    String fname = null;
-    String lname = null;
-    
-    int index=PayeeFullName.indexOf(" ");
-    fname = PayeeFullName.substring(0, index);
-    lname = PayeeFullName.substring(index+1,PayeeFullName.length());
-    
-    System.out.println("PayeeNo " + PayeeAccNo);
-    System.out.println("Fname "+ fname);
-    System.out.println("lname "+ lname);
-    
-    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
-    System.out.println("First result is "+result);
-    if(result==0)
-    {
-    	String message1="Sorry! You have entered wrong account details. Please verify." ;
-    	model.addAttribute("message1",message1);
-    	return new ModelAndView("welcome");
-    }
-    
-    
-    String AccNo = accdao.FindAccNoByUidAndType(uid,AccType);
-    result = accdao.CheckForEnoughBalAndDeduct(AccNo,Amount,PayeeAccNo);
-    System.out.println("Second result is "+result);
+	
+	int remained_secs = accdao.FindActivePayeeByUidAndPayeeAccNo(uid,PayeeAccNo);
+	if(remained_secs < 120)
+		{
+			String message1="Please wait ! You can transfer funds to this payee after "+ (120-remained_secs)+" seconds";
+			model.addAttribute("message1",message1);
+			return new ModelAndView("welcome");
+		}
+	
+	AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
+	accountDetailsVO.setCust_uid(uid);
+	accountDetailsVO.setAcc_type(AccType);
+	accountDetailsVO = accdao.FindAccNoByUidAndType(accountDetailsVO);
+	accountDetailsVO.setPayee_acc_no(PayeeAccNo);
+	accountDetailsVO.setTransfer_amount(Amount);
+	int result = accdao.CheckForEnoughBalAndDeduct(accountDetailsVO);
     
     if(result==0)
     {
@@ -185,7 +180,7 @@ public ModelAndView NEFT_fun(HttpServletRequest request, HttpServletResponse res
     
     if(result==2)
     {
-    	String message1="Amount of Rs."+Amount+" is successfully transfered to "+PayeeFullName+".";
+    	String message1="Amount of Rs."+Amount+" is successfully transfered to "+PayeeAccNo+".";
     	model.addAttribute("message1",message1);
     	return new ModelAndView("welcome");
     }
@@ -222,12 +217,15 @@ public ModelAndView verifyPayee_fun(HttpServletRequest request, HttpServletRespo
     fname = PayeeFullName.substring(0, index);
     lname = PayeeFullName.substring(index+1,PayeeFullName.length());
     
-    System.out.println("PayeeNo " + PayeeAccNo);
-    System.out.println("Fname "+ fname);
-    System.out.println("lname "+ lname);
+    LoginVO loginVO = new LoginVO();
+    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
     
-    int result=accdao.SearchAccountByAccNoAndF_L_Name(PayeeAccNo, fname, lname);
-    System.out.println("First result is "+result);
+    loginVO.setCust_fname(fname);
+    loginVO.setCust_lname(lname);
+    accountDetailsVO.setPayee_acc_no(PayeeAccNo);
+    
+    int result=accdao.SearchAccountByAccNoAndF_L_Name(loginVO, accountDetailsVO);
+    
     if(result==0)
     {
     	String message1="Sorry! You have entered wrong account details. Please verify." ;

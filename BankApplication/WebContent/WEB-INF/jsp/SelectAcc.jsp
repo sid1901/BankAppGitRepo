@@ -25,13 +25,15 @@ Initiate Fund Transfer
 <h></br></h>
 
 <h>Select your Payee account* :</h>
-<select name="department">
+<select name="Payee">
           <c:forEach var="item" items="${payees}">
             <option value="${item.key}">${item.value}</option>
           </c:forEach>
         </select>
 
 <h></br></h>
+<h></br></h>
+Enter Amount to transfer <input type="text" name="Amount"> </input> </br>
 
 <!-- <input type="text" name="PayeeAccNo"> Enter Payee Acc No </input> </br>
 <input type="text" name="PayeeFullName"> Enter Payee Full Name </input> </br>
