@@ -36,7 +36,7 @@
 				            		<div class="col-sm-12">
 				                		<div class="ad-block">Shortcuts</div>
 				                	</div>
-				        </div>
+				       				 </div>
 				        <a href="Profile.html" > Profile </a></br></br>
 				        <a href="Profile.html" > Passbook </a></br></br>
 				        <a href="Services.html"> Services </a></br></br>
@@ -63,8 +63,8 @@
 						
 						%>
 						        	
-
-
+					</div>
+			</div>
               
         <div class="col-sm-5">
         
@@ -108,9 +108,9 @@
         </div>
     </div>
 
+
 </div>
-</div>
-</div>
+
 
 
 </body>
