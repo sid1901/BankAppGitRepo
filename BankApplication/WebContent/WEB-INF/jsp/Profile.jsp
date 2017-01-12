@@ -34,15 +34,15 @@
 				        <div class="left-sidebar bg-white">
 				        				<div class="row">
 				            		<div class="col-sm-12">
-				                		<div class="ad-block">Shortcuts</div>
+				                		<div class="ad-block"><h3>Shortcuts</h3></div>
 				                	</div>
 				        </div>
-				        <a href="Profile.html" > Profile </a></br></br>
-				        <a href="Profile.html" > Passbook </a></br></br>
-				        <a href="Services.html"> Services </a></br></br>
-						<a herf="multiAcc.html">Create Multiple Account</a></br></br>
-						<a herf="FundTransfer.html">Fund Transfer</a></br></br>
-						<a herf="AddPayee.html">Add Payee</a></br></br>
+				        <a href="Profile.html" > Profile </a><br></br>
+				        <a href="Profile.html" > Passbook </a><br></br>
+				        <a href="Services.html"> Services </a><br></br>
+						<a href="multiAcc.html">Create Multiple Account</a><br></br>
+						<a href="FundTransfer.html">Fund Transfer</a><br></br>
+						<a href="AddPayee.html">Add Payee</a><br></br>
 						
 						<% 
 						String uid = (String) session.getAttribute("uid");
@@ -53,7 +53,7 @@
 						
 						   
 						<form action="Logout.html" method="post">
-						<input type="submit" value="Logout" style="text-align: center;" >
+						<input type="submit" value="Logout" style="text-align: center;" ></input>
 						</form>
 						 	
 						<%
@@ -99,50 +99,50 @@
 							<table>
 
 									  <tr>
-									    <td><h4>Name:</td>
-									    <td><input type = text name="fname" id="fname" value =${fname}  disabled="disabled"></input></h4></td>
+									    <td><h4>Name:</h4></td>
+									    <td><input type = "text" name="fname" id="fname" value =${fname}  disabled="disabled"></input></h4></td>
 									   
 									  </tr>
 									  <tr>
-									    <td><h4>LastName:  </td>
-									    <td><input type = text name="lname" id="lname" value =${lname} disabled="disabled"></input></h4></td>
+									    <td><h4>LastName:  </h4></td>
+									    <td><input type = "text" name="lname" id="lname" value =${lname} disabled="disabled"></input></h4></td>
 									
 									  </tr>
 									  
 									  <tr>
-									    <td><h4>Address Line1:  </td>
-									    <td><input type = text id="add1" name="add1" value =${add1} disabled="disabled"></input></h4></td>
+									    <td><h4>Address Line1:  </h4></td>
+									    <td><input type = "text" id="add1" name="add1" value =${add1} disabled="disabled"></input></h4></td>
 									
 									  </tr>
 									  <tr>
-									    <td><h4>Address Line2:     </td>
-									    <td><input type = text id="add2" name="add2" value =${add2} disabled="disabled"></input></h4></td>
+									    <td><h4>Address Line2:     </h4></td>
+									    <td><input type = "text" id="add2" name="add2" value =${add2} disabled="disabled"></input></h4></td>
 									
 									  </tr>
 									  <tr>
-									    <td><h4>Mobile:       </td>
-									    <td><input type = text id="mob" name="mob" value =${mob} disabled="disabled"></input></h4></td>
+									    <td><h4>Mobile:       </h4></td>
+									    <td><input type = "text" id="mob" name="mob" value =${mob} disabled="disabled"></input></h4></td>
 									
 									  </tr>
 									 <tr>
-									    <td><h4>Email:    </td>
-									    <td><input type = text id="email" name="email" value =${email} disabled="disabled"></input></h4></td>
+									    <td><h4>Email:    </h4></td>
+									    <td><input type = "text" id="email" name="email" value =${email} disabled="disabled"></input></h4></td>
 									
 									  </tr>
 									 
 									  <tr>
-									    <td><h4>Age:  </td>
-									    <td><input type = text id="age" name="age" value =${age} disabled="disabled"></input></h4></td>
+									    <td><h4>Age:  </h4></td>
+									    <td><input type = "text" id="age" name="age" value =${age} disabled="disabled"></input></td>
 									
 									  </tr>
 							
 									  <tr>
 									    <td><input type="button" id="update" value="Update Profile"  onclick="myFunction()"></input>   </td>
-									    <td><input type="submit" id="save" value="Save Profile" disabled="disabled"></td>
+									    <td><input type="submit" id="save" value="Save Profile" disabled="disabled"></input></td>
 									   
-									  </tr></br>
+									  </tr>
 									  <tr>
-									    <td></br><input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input></td>
+									    <td><br></br><input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input></td>
 									    <td></td>
 									   
 									  </tr>
@@ -161,7 +161,7 @@
     	<div class="col-sm-12">
         	<div class="footer bg-white">
             	<div class="copyright">
-                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://www.exotictheme.com" target="_blank">ExoticTheme.com</a></p>
+                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://localhost:8083/BankApplication/" target="_blank">SSA.com</a></p>
                 </div>
             </div>
         </div>

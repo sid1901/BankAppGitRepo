@@ -32,15 +32,15 @@
 				        <div class="left-sidebar bg-white">
 				        				<div class="row">
 				            		<div class="col-sm-12">
-				                		<div class="ad-block">Shortcuts</div>
+				                		<div class="ad-block"><h3>Shortcuts</h3></div>
 				                	</div>
 				        </div>
-				        <a href="Profile.html" > Profile </a></br></br>
-				        <a href="Profile.html" > Passbook </a></br></br>
-				        <a href="Services.html"> Services </a></br></br>
-						<a herf="multiAcc.html">Create Multiple Account</a></br></br>
-						<a herf="FundTransfer.html">Fund Transfer</a></br></br>
-						<a herf="AddPayee.html">Add Payee</a></br></br>
+				        <a href="Profile.html" > Profile </a><br></br>
+				        <a href="Profile.html" > Passbook </a><br></br>
+				        <a href="Services.html"> Services </a><br></br>
+						<a href="multiAcc.html">Create Multiple Account</a><br></br>
+						<a href="FundTransfer.html">Fund Transfer</a><br></br>
+						<a href="AddPayee.html">Add Payee</a><br></br>
 						
 						<% 
 						String uid = (String) session.getAttribute("uid");
@@ -51,7 +51,7 @@
 						
 						   
 						<form action="Logout.html" method="post">
-						<input type="submit" value="Logout" style="text-align: center;" >
+						<input type="submit" value="Logout" style="text-align: center;" ></input>
 						</form>
 						 	
 						<%
@@ -78,37 +78,35 @@
                 	<div class="main-content bg-white">
                     	<div class="row">
             				<div class="col-sm-12">
-                				<div class="ad-block">welcome</div>
+                				<div class="ad-block"><h3>welcome</h3></div>
                 			</div>
                 		</div>
                 		
 <h2>${message}</h2><h2>${message1}</h2><h2>${message2}</h2>  
                 		
-								 <input type="text" name="mob"><br>
-								<br>
+								 <input type="text" name="mob"></input><br>
+								</br>
 								<form action ="Txn.html" method="post">
-								<input type="radio" name="pre" value="Prepaid"  autocomplete="on" > Pre-paid
-								<input type="radio" name="pre" value="Postpaid"> Post paid<br>
-								<br>
-								<h>Select your Operator</h>
+								<input type="radio" name="pre" value="Prepaid"> </input>Pre-paid
+								<input type="radio" name="pre" value="Postpaid"></input> Post-paid
+								<br></br>
+								<h1>Select your Operator</h1>
 								  <select name="operator">
 								    <option value="bsnl">BSNL</option>
 								    <option value="Airtel">Airtel</option>
 								    <option value="Docomo">Docomo</option>
 								    <option value="Idea">Idea</option>
 								  </select><br>
-								  <br>
-								 <h>Enter Your Amount</h>
-								 <input type="text" name="amt"> <br>
-								 <br>
-								 <input type ="submit" name="Submit" value="proceed to pay"/>
+								  </br>
+								 <h2>Enter Your Amount</h2>
+								 <input type="text" name="amt"></input> <br>
+								 </br>
+								 <input type ="submit" name="Submit" value="proceed to pay"/><br></br>
 								 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
 								 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 								 
 								</form>
-								                		
-   
-                		
+							
                     </div>
                 </div>
             </div>
@@ -119,7 +117,7 @@
     	<div class="col-sm-12">
         	<div class="footer bg-white">
             	<div class="copyright">
-                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://www.exotictheme.com" target="_blank">ExoticTheme.com</a></p>
+                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://localhost:8083/BankApplication/" target="_blank">ExoticTheme.com</a></p>
                 </div>
             </div>
         </div>

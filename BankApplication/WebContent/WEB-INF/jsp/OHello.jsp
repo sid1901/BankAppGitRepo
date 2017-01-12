@@ -34,15 +34,15 @@
 				        <div class="left-sidebar bg-white">
 				        				<div class="row">
 				            		<div class="col-sm-12">
-				                		<div class="ad-block">Shortcuts</div>
+				                		<div class="ad-block"><h3>Shortcuts</h3></div>
 				                	</div>
 				        </div>
-				        <a href="Profile.html" > Profile </a></br></br>
-				        <a href="Profile.html" > Passbook </a></br></br>
-				        <a href="Services.html"> Services </a></br></br>
-						<a herf="multiAcc.html">Create Multiple Account</a></br></br>
-						<a herf="FundTransfer.html">Fund Transfer</a></br></br>
-						<a herf="AddPayee.html">Add Payee</a></br></br>
+				        <a href="Profile.html" > Profile </a><br></br>
+				        <a href="Profile.html" > Passbook </a><br></br>
+				        <a href="Services.html"> Services </a><br></br>
+						<a href="multiAcc.html">Create Multiple Account</a><br></br>
+						<a href="FundTransfer.html">Fund Transfer</a><br></br>
+						<a href="AddPayee.html">Add Payee</a><br></br>
 						
 						<% 
 						String uid = (String) session.getAttribute("uid");
@@ -53,7 +53,7 @@
 						
 						   
 						<form action="Logout.html" method="post">
-						<input type="submit" value="Logout" style="text-align: center;" >
+						<input type="submit" value="Logout" style="text-align: center;" ></input>
 						</form>
 						 	
 						<%
@@ -85,9 +85,9 @@
     <option value="EB">Electricity Bill</option>
     <option value="DTH">DTH</option>
   </select>
-  <br><br>
+  <br></br>
 
-<input type="submit" value="Submit" >
+<input type="submit" value="Submit" ></input>
 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Validate.html'"></input>
 
 </form>

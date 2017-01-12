@@ -34,15 +34,15 @@
 				        <div class="left-sidebar bg-white">
 				        				<div class="row">
 				            		<div class="col-sm-12">
-				                		<div class="ad-block">Shortcuts</div>
+				                		<div class="ad-block"><h3>Shortcuts</h3></div>
 				                	</div>
 				       				 </div>
-				        <a href="Profile.html" > Profile </a></br></br>
-				        <a href="Profile.html" > Passbook </a></br></br>
-				        <a href="Services.html"> Services </a></br></br>
-						<a herf="multiAcc.html">Create Multiple Account</a></br></br>
-						<a herf="FundTransfer.html">Fund Transfer</a></br></br>
-						<a herf="AddPayee.html">Add Payee</a></br></br>
+				        <a href="Profile.html" > Profile </a><br></br>
+				        <a href="Profile.html" > Passbook </a><br></br>
+				        <a href="Services.html"> Services </a><br></br>
+						<a href="multiAcc.html">Create Multiple Account</a><br></br>
+						<a href="FundsTransfer.html">Fund Transfer</a><br></br>
+						<a href="AddPayee.html">Add Payee</a><br></br>
 						
 						<% 
 						String uid = (String) session.getAttribute("uid");
@@ -53,7 +53,7 @@
 						
 						   
 						<form action="Logout.html" method="post">
-						<input type="submit" value="Logout" >
+						<input type="submit" value="Logout" ></input>
 						</form>
 						 	
 						<%
@@ -102,7 +102,7 @@
     	<div class="col-sm-12">
         	<div class="footer bg-white">
             	<div class="copyright">
-                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://www.exotictheme.com" target="_blank">ExoticTheme.com</a></p>
+                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://localhost:8083/BankApplication/" target="_blank">SSA.com</a></p>
                 </div>
             </div>
         </div>
