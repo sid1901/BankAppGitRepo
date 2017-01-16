@@ -99,7 +99,7 @@
 								  </select><br>
 								  </br>
 								 <h2>Enter Your Amount</h2>
-								 <input type="text" name="amt"></input> <br>
+								 <input type="text" name="Amount"></input> <br>
 								 </br>
 								 <input type ="submit" name="Submit" value="proceed to pay"/><br></br>
 								 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>

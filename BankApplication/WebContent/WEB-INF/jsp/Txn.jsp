@@ -10,11 +10,11 @@
 <f:view>
 <h2>${message}</h2> 
 
-<h>Select your Account Type</h>
+<h>From which of your accounts* :</h>
 <form action="TxnResult.html" method="post">
 <select name="AccType">
-    <option value="Savings">Savings</option>
-    <option value="Current">Current</option>
+    <option value="Savings" ${savings}> Savings - ${S_AccNo} </option>
+    <option value="Current" ${current}> Current - ${C_AccNo} </option>
 </select></br>
 </br><input type="submit" value="Confirm">
 </form>

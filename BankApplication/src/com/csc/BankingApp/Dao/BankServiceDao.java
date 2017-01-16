@@ -13,7 +13,7 @@ public class BankServiceDao {
 	}  
 	  
 
-	 public String Txn(AccountDetailsVO o){
+	 public String Txn(AccountDetailsVO accVO){
 		return null;  
 		  
 	 }
