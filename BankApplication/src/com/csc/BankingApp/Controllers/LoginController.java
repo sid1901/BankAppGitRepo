@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.csc.BankingApp.Dao.LoginDetailsDao;
+import com.csc.BankingApp.Services.CommonServices;
 import com.csc.BankingApp.ValueObjects.LoginVO;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest; 
@@ -22,6 +23,10 @@ public class LoginController {
 	
 @RequestMapping("/Validate")
 public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
+	
+	
+	CommonServices commonServices= new CommonServices();
+	commonServices.sendMail();
 	
 	HttpSession session = request.getSession();
 	if (session.getAttribute("uid")==null)
@@ -137,7 +142,14 @@ public ModelAndView email_fun(HttpServletRequest request, HttpServletResponse re
 
 @RequestMapping("/SendMail")  
 public ModelAndView SendMail_fun(HttpServletRequest request, HttpServletResponse response) {
-	String message = "Sorry ! This Page is Under Construction...";
+	HttpSession session = request.getSession();
+	String uid = (String) session.getAttribute("uid");
+	String email = request.getParameter("email");
+	
+	CommonServices commonServices= new CommonServices();
+	commonServices.sendMail();
+	
+	String message = "";
 	return new ModelAndView("LoginPage", "message", message); 
 }
 

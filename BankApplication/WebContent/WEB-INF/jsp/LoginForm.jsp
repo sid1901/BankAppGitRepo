@@ -23,7 +23,7 @@ Gender
 Male <input type="radio" value="male" name="gen"/>
 Female <input type="radio" value="female" name="gen"/>
 <input type= "submit" value="Submit"/>
-
+<input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/index.jsp'"></input>
 </form>
 <%
 response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
@@ -31,5 +31,6 @@ response.setHeader("Pragma","no-cache");
 response.setDateHeader("Expires", 0);
 session.invalidate();
 %>
+
 </body>
 </html>

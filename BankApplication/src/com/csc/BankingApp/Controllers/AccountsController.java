@@ -43,7 +43,7 @@ public ModelAndView AccNoGen_fun(HttpServletRequest request, HttpServletResponse
     AccTypeexists=accdao.findAccType(accountDetailsVO);
 	if(AccTypeexists==1)
 	{
-		String message = "You already have a "+AccType+" account.";
+		String message = "Sorry! You already have a "+AccType+" account.";
 		return new ModelAndView("multiAcc", "message", message);
 	}
 	

@@ -49,7 +49,7 @@
 						
 						<br/>
 						
-						   
+						  
 						<form action="Logout.html" method="post">
 						<input type="submit" value="Logout" ></input>
 						</form>
@@ -85,6 +85,7 @@
 									</select><br></br> Enter Account Opening Balance: <input type="text" name="initAmt"></input> <br></br>
 									<input type="submit" value="confirm"></input> 
 									<input type="button" id="b2" value="Home" onclick="location.href='/BankApplication/Validate.html'"></input>
+								 ${message}
 								</form>
 
 

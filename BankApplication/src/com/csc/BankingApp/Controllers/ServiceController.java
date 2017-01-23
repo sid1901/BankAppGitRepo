@@ -1,5 +1,9 @@
 package com.csc.BankingApp.Controllers;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -63,13 +67,39 @@ public class ServiceController {
 	@RequestMapping("/Txn")  
 	public ModelAndView Txn_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
+		String S_AccNo = null;
+		String C_AccNo = null;
+		String sav_attr = "disabled='disabled'";;
+		String cur_attr = "disabled='disabled'";;
+		String Enable_Attr = "enabled='enabled'";
+		
 		HttpSession session = request.getSession();
-		String uid=(String) session.getAttribute("uid");
+	    String uid=(String) session.getAttribute("uid");
+	    
+	    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
+	    accountDetailsVO.setCust_uid(uid);
+	    accountDetailsVO.setAcc_type("Savings");;
+	    accountDetailsVO=accdao.FindAccNoByUidAndType(accountDetailsVO);
+	    S_AccNo=accountDetailsVO.getAcc_no();
+	    accountDetailsVO.setAcc_type("Current");;
+	    accountDetailsVO=accdao.FindAccNoByUidAndType(accountDetailsVO);
+	    C_AccNo=accountDetailsVO.getAcc_no();
+	    
+	    if (S_AccNo != "NA")
+	    	sav_attr=Enable_Attr;
+	    if (C_AccNo != "NA")
+	    	cur_attr=Enable_Attr;
+	    
+	    model.addAttribute("savings", sav_attr);
+		model.addAttribute("current", cur_attr);
+		model.addAttribute("S_AccNo",S_AccNo);
+		model.addAttribute("C_AccNo",C_AccNo);
+		
+		TreeMap<String, String> payees = new TreeMap<String, String>();
+		
 		String Amount = request.getParameter("Amount");
-	    System.out.println(Amount);
 	    session.setAttribute("Amount", Amount);
-	    session.setAttribute("uid", uid);
-	
+	    
 		return new ModelAndView("Txn");
 	}
 	
@@ -102,8 +132,9 @@ public class ServiceController {
 		accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
 		System.out.println(service_provider_acc_no);
 		
-		AccountDetailsDao ob = new AccountDetailsDao();
-		int result =ob.CheckForEnoughBalAndDeduct(accountDetailsVO);
+		//AccountDetailsDao ob = new AccountDetailsDao();
+		//int result =ob.CheckForEnoughBalAndDeduct(accountDetailsVO);
+		int result =accdao.CheckForEnoughBalAndDeduct(accountDetailsVO);
 		System.out.println(result);
 		
 		if(result==0)
