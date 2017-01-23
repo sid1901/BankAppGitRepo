@@ -64,33 +64,34 @@ public class ServiceController {
 	public ModelAndView Txn_fun(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
 		HttpSession session = request.getSession();
-		
-	    String uid=(String) session.getAttribute("uid");
-	    Double Amount = Double.parseDouble(request.getParameter("Amount"));
-	    
-	    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
-		accountDetailsVO.setCust_uid(uid);
-		accountDetailsVO.setTransfer_amount(Amount);
-		//if (){
-
-		//}
+		String uid=(String) session.getAttribute("uid");
+		String Amount = request.getParameter("Amount");
+	    System.out.println(Amount);
+	    session.setAttribute("Amount", Amount);
+	    session.setAttribute("uid", uid);
+	
 		return new ModelAndView("Txn");
 	}
 	
 	@RequestMapping("/TxnResult")
 	public ModelAndView Txn_Result(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-		 
+		System.out.println("hello");
 		HttpSession session = request.getSession();
 		String uid=(String) session.getAttribute("uid");
-		Double Amount = Double.parseDouble(request.getParameter("Amount"));
-		session.setAttribute(request.getParameter("Amount"), Amount);
-		session.setAttribute(uid, uid);
+		System.out.println(uid);
+		String Amount=(String) session.getAttribute("Amount");
+		//Double Amount = Double.parseDouble(request.getAttribute("Amount"));
+		System.out.println(Amount);
 		String AccType = request.getParameter("AccType");
-		
+	
+		System.out.println(AccType);
+	
 	    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
 		accountDetailsVO.setCust_uid(uid);
 		accountDetailsVO.setAcc_type(AccType);
-		accountDetailsVO.setTransfer_amount(Amount);
+	
+		Double Amount_dbl = Double.parseDouble(Amount);
+		accountDetailsVO.setTransfer_amount(Amount_dbl);
 	
 		// set acc no
 		accountDetailsVO = accdao.FindAccNoByUidAndType(accountDetailsVO);
@@ -99,10 +100,11 @@ public class ServiceController {
 		
 		String service_provider_acc_no = "9571650934";
 		accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
-		
+		System.out.println(service_provider_acc_no);
 		
 		AccountDetailsDao ob = new AccountDetailsDao();
 		int result =ob.CheckForEnoughBalAndDeduct(accountDetailsVO);
+		System.out.println(result);
 		
 		if(result==0)
 	    {

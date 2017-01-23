@@ -5,7 +5,34 @@
 <title>Spring MVC login example.</title> 
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
+
+<script>
+function validateForm() {
+    var x = document.forms["Txn"]["Amount"].value;
+    if (x == "") {
+        alert("Please enter Recharge amount");
+        return false;
+    }
+    
+    function ValidateNo() {
+        var phoneNo = document.getElementById('txtPhoneNo');
+
+    if (phoneNo.value == "" || phoneNo.value == null) {
+            alert("Please enter your Mobile No.");
+            return false;
+        }
+        if (phoneNo.value.length < 10 || phoneNo.value.length > 10) {
+            alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+            return false;
+        }
+
+        alert("Success ");
+        return true;
+        }
+}
+</script>
 </head>
+
 
 <body>
 
@@ -84,10 +111,10 @@
                 		
 <h2>${message}</h2><h2>${message1}</h2><h2>${message2}</h2>  
                 		
-								 <input type="text" name="mob"></input><br>
+								 <input type="text" id="txtPhoneNo"  required></input><br>
 								</br>
-								<form action ="Txn.html" method="post">
-								<input type="radio" name="pre" value="Prepaid"> </input>Pre-paid
+								<form name="Txn" action ="Txn.html" method="post">
+								<input type="radio" name="pre" value="Prepaid" > </input>Pre-paid
 								<input type="radio" name="pre" value="Postpaid"></input> Post-paid
 								<br></br>
 								<h1>Select your Operator</h1>
@@ -101,7 +128,7 @@
 								 <h2>Enter Your Amount</h2>
 								 <input type="text" name="Amount"></input> <br>
 								 </br>
-								 <input type ="submit" name="Submit" value="proceed to pay"/><br></br>
+								 <input type ="submit" name="Submit" value="proceed to pay" onclick="ValidateNo()"/><br></br>
 								 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
 								 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 								 

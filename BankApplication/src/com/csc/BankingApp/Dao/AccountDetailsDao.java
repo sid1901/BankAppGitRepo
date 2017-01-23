@@ -47,7 +47,7 @@ public class AccountDetailsDao {
 
 	public AccountDetailsVO FindAccNoByUidAndType(AccountDetailsVO accVO) {
 		try{
-		String sql = "SELECT ACC_NO FROM ACCOUNT_DETAILS WHERE CUST_UID = ? AND ACC_TYPE= ? ";
+ 		String sql = "SELECT ACC_NO FROM ACCOUNT_DETAILS WHERE CUST_UID = ? AND ACC_TYPE= ? ";
 		String acc_no = (String)jdbcTemplate.queryForObject(
 				sql, new Object[] { accVO.getCust_uid(), accVO.getAcc_type() }, String.class);
 		
@@ -85,8 +85,9 @@ public class AccountDetailsDao {
 	public int CheckForEnoughBalAndDeduct(AccountDetailsVO accVO) {
 	// Check for sufficient Account Balance.
 		String sql1 = "select acc_curr_bal from account_details where acc_no = ?";
-		int available = jdbcTemplate.queryForInt(sql1,new Object[]{accVO.getAcc_no()});
-		
+		System.out.println(accVO.getAcc_no());
+		int available = jdbcTemplate.queryForObject(sql1, new Object[]{accVO.getAcc_no()},Integer.class);
+		System.out.println(available);
 		if(available < accVO.getTransfer_amount())
 		{
 			int result = 0;

@@ -15,8 +15,10 @@
 <select name="AccType">
     <option value="Savings" ${savings}> Savings - ${S_AccNo} </option>
     <option value="Current" ${current}> Current - ${C_AccNo} </option>
-</select></br>
-</br><input type="submit" value="Confirm">
+</select><br></br>
+<br></br><input type="submit" value="Confirm">
+<input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
+<input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
 </form>
 </f:view>
 </body>
