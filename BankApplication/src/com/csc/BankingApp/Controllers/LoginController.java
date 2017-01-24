@@ -24,10 +24,6 @@ public class LoginController {
 @RequestMapping("/Validate")
 public ModelAndView Validate_fun(HttpServletRequest request, HttpServletResponse response, ModelMap modal) {
 	
-	
-	CommonServices commonServices= new CommonServices();
-	commonServices.sendMail();
-	
 	HttpSession session = request.getSession();
 	if (session.getAttribute("uid")==null)
 	{
