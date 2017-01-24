@@ -19,7 +19,9 @@
  -->
 
 <property name="url" value="jdbc:mysql://20.198.11.27:3306/world" />
-<property name="username" value="anju" />  
+
+<property name="username" value="newuser" />  
+
 <property name="password" value="anju2008" /> 
 
 
