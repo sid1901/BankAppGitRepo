@@ -56,7 +56,7 @@ response.setDateHeader("Expires", 0);
 <form action ="Txn.html" method="post">
 <br>
 <h>Select your Board</h>
-  <select name="board">
+  <select name="operator">
     <option value="MP">Madhya Pradesh(MPEB)</option>
     <option value="AP">Ardhra(APEPB)</option>
     <option value="MH">Maharashtra(MEB)</option>
@@ -64,7 +64,7 @@ response.setDateHeader("Expires", 0);
   </select><br>
   <br>
  <h>Enter Your Amount</h>
- <input type="text" name="amt"> <br>
+ <input type="text" name="Amount"> <br>
  <br>
  <input type ="submit" name="Submit" value="Proceed to pay"/>
 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>

@@ -95,7 +95,54 @@ public class ServiceController {
 		model.addAttribute("S_AccNo",S_AccNo);
 		model.addAttribute("C_AccNo",C_AccNo);
 		
-	//	TreeMap<String, String> payees = new TreeMap<String, String>();
+	//	TreeMap<String, String> payee's = new TreeMap<String, String>();
+		if (request.getParameter("operator").equals("bsnl")){
+			
+			String service_provider_acc_no = "9571650934";
+			accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
+			session.setAttribute("service_provider_acc_no", service_provider_acc_no);
+			System.out.println(service_provider_acc_no);
+		}
+			
+			else if(request.getParameter("operator").equals("Airtel"))  {
+				String service_provider_acc_no = "8606130570";
+				accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
+				session.setAttribute("service_provider_acc_no", service_provider_acc_no);
+				System.out.println(service_provider_acc_no);
+				
+			}
+			
+		
+			else if(request.getParameter("operator").equals("Docomo"))  {
+				String service_provider_acc_no = "4442899241";
+				accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
+				session.setAttribute("service_provider_acc_no", service_provider_acc_no);
+				System.out.println(service_provider_acc_no);
+				
+			}
+			
+			else if(request.getParameter("operator").equals("Idea"))  {
+				String service_provider_acc_no = "9571650934";
+				accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
+				session.setAttribute("service_provider_acc_no", service_provider_acc_no);
+				System.out.println(service_provider_acc_no);
+				
+			}
+			
+		
+			else if(request.getParameter("operator").equals("TATA"))  {
+				String service_provider_acc_no = "1001859413";
+				accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
+				session.setAttribute("service_provider_acc_no", service_provider_acc_no);
+				System.out.println(service_provider_acc_no);
+				
+			}
+			
+			else {
+	    		String message = "Plese select any one";
+	        	return new ModelAndView("Txn", "message", message); 
+	    	}
+		
 		
 		String Amount = request.getParameter("Amount");
 	    session.setAttribute("Amount", Amount);
@@ -109,9 +156,14 @@ public class ServiceController {
 		HttpSession session = request.getSession();
 		String uid=(String) session.getAttribute("uid");
 		System.out.println(uid);
+	
+		String service_provider_acc_no=(String) session.getAttribute("service_provider_acc_no");
+		System.out.println(service_provider_acc_no);
+		
 		String Amount=(String) session.getAttribute("Amount");
 		//Double Amount = Double.parseDouble(request.getAttribute("Amount"));
 		System.out.println(Amount);
+		
 		String AccType = request.getParameter("AccType");
 	
 		System.out.println(AccType);
@@ -119,6 +171,7 @@ public class ServiceController {
 	    AccountDetailsVO accountDetailsVO = new AccountDetailsVO();
 		accountDetailsVO.setCust_uid(uid);
 		accountDetailsVO.setAcc_type(AccType);
+		accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
 	
 		Double Amount_dbl = Double.parseDouble(Amount);
 		accountDetailsVO.setTransfer_amount(Amount_dbl);
@@ -127,11 +180,19 @@ public class ServiceController {
 		accountDetailsVO = accdao.FindAccNoByUidAndType(accountDetailsVO);
 		
 		// set payee_acc_no
-		
+	/*	if (request.getParameter("operator").equals("bsnl")){
+			
 		String service_provider_acc_no = "9571650934";
 		accountDetailsVO.setPayee_acc_no(service_provider_acc_no);
 		System.out.println(service_provider_acc_no);
+		}
 		
+		else {
+			String message1="Select right operator";
+	    	model.addAttribute("message1",message1);
+	    	return new ModelAndView("Txn");
+		}
+		*/
 		//AccountDetailsDao ob = new AccountDetailsDao();
 		//int result =ob.CheckForEnoughBalAndDeduct(accountDetailsVO);
 		int result =accdao.CheckForEnoughBalAndDeduct(accountDetailsVO);

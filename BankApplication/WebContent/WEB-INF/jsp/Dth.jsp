@@ -55,13 +55,13 @@ response.setDateHeader("Expires", 0);
 <h>Select your Operator</h>
   <select name="operator">
     <option value="TATA">TATASKY</option>
-    <option value="Airtel">Airtel Digital TV</option>
+    <option value="AirtelDth">Airtel Digital TV</option>
     <option value="Dish">Dish TV</option>
     <option value="Sun">Sun TV</option>
   </select><br>
   <br>
  <h>Enter Your Amount</h>
- <input type="text" name="amt"> <br>
+ <input type="text" name="Amount"> <br>
  <br>
  <input type ="submit" name="Submit" value="Proceed to pay"/>
 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
