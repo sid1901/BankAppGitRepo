@@ -95,7 +95,7 @@ public class ServiceController {
 		model.addAttribute("S_AccNo",S_AccNo);
 		model.addAttribute("C_AccNo",C_AccNo);
 		
-		TreeMap<String, String> payees = new TreeMap<String, String>();
+	//	TreeMap<String, String> payees = new TreeMap<String, String>();
 		
 		String Amount = request.getParameter("Amount");
 	    session.setAttribute("Amount", Amount);

@@ -50,7 +50,7 @@ response.setDateHeader("Expires", 0);
 </br></br></br></br></br></br></br></br></br></br></br></br>
 
 
-<form action ="Dth.html" method="post">
+<form action ="Txn.html" method="post">
 
 <h>Select your Operator</h>
   <select name="operator">

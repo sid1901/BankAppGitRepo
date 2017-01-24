@@ -53,7 +53,7 @@ response.setDateHeader("Expires", 0);
 <!--right sidebar-->  
 
 
-<form action ="Elebill.html" method="post">
+<form action ="Txn.html" method="post">
 <br>
 <h>Select your Board</h>
   <select name="board">
