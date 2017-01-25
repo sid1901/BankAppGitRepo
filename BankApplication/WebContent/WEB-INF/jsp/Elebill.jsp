@@ -1,76 +1,148 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <link rel="stylesheet" href="css/main.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Electricity paytment</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Spring MVC login example.</title> 
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+
+<script>
+function validateForm() {
+    var x = document.forms["Txn"]["Amount"].value;
+    if (x == "") {
+        alert("Please enter Recharge amount");
+        return false;
+    }
+    
+    function ValidateNo() {
+        var phoneNo = document.getElementById('txtPhoneNo');
+
+    if (phoneNo.value == "" || phoneNo.value == null) {
+            alert("Please enter your Mobile No.");
+            return false;
+        }
+        if (phoneNo.value.length < 10 || phoneNo.value.length > 10) {
+            alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+            return false;
+        }
+
+        alert("Success ");
+        return true;
+        }
+}
+</script>
 </head>
+
+
 <body>
-<header  style="text-align: center;">SSA BANK</header> </br>
-<h2>${message}</h2> 
 
-<!--right sidebar-->   
-        <div class="col-sm-4">
+<div class="container">
+	<!--header start-->
+	<div class="row">
+    	<div class="col-sm-12">
+        	<div class="header bg-white">            		
+            			<div class="logo"><a href="http://www.exotictheme.com" target="_blank">SSA BANK</a></div>
+                		<div class="ad-block"></div>            	
+            </div>
+        </div>
+    </div>
+
+
+<%-- <h2>${UserName}</h2><br/> --%>  
+    
+    <!--sidebar and content-->
+
+  	
+    	<!--left sidebar-->
+		<div class="col-sm-3">
+		
+				        <div class="left-sidebar bg-white">
+				        				<div class="row">
+				            		<div class="col-sm-12">
+				                		<div class="ad-block"><h3>Shortcuts</h3></div>
+				                	</div>
+				        </div>
+				        <a href="Profile.html" > Profile </a><br></br>
+				        <a href="Profile.html" > Passbook </a><br></br>
+				        <a href="Services.html"> Services </a><br></br>
+						<a href="multiAcc.html">Create Multiple Account</a><br></br>
+						<a href="FundTransfer.html">Fund Transfer</a><br></br>
+						<a href="AddPayee.html">Add Payee</a><br></br>
+						
+						<% 
+						String uid = (String) session.getAttribute("uid");
+						%>
+						
+						
+						<br/>
+						
+						   
+						<form action="Logout.html" method="post">
+						<input type="submit" value="Logout" style="text-align: center;" ></input>
+						</form>
+						 	
+						<%
+						response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+						response.setHeader("Pragma","no-cache");
+						response.setDateHeader("Expires", 0);
+						
+						%>
+						        	
+          	
+            </div>
+        </div>  
+
+              
+        <div class="col-sm-5">
         
-        	<div class="right-sidebar bg-white">
         	
-<div class="ad-block"><h1>Categories</h1></div>
-<input type="button"  id="services" value = "Services" onclick="location.href='/BankApplication/Services.html'" ></input></br></br>
-<input type="button" id="profile" value = "Profile" onclick="location.href='/BankApplication/Profile.html'" ></input></br></br>
-<input type="button" id="services" value = "Passbook" onclick="location.href='/BankApplication/passbook.html'" ></input></br></br>
-<input type="button" id="services" value = "Create multiple Account" onclick="location.href='/BankApplication/multiAcc.html'" ></input></br></br>
-
-<% 
-String uid = (String) session.getAttribute("uid");
-%>
-
-Logged in id=<%=uid %>
-<br/>
-
-   
-<form action="Logout.html" method="post">
-<input type="submit" value="Logout" >
-</form>
- 	
-<%
-response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-response.setHeader("Pragma","no-cache");
-response.setDateHeader("Expires", 0);
-
-%>
-        	</div>
-           
-   </div>
-</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-</br></br></br>
- 
-</body> 
-</br></br></br></br></br></br></br></br></br></br></br></br>
-
-<!--right sidebar-->  
-
-
+            <!--main content-->           
+            <div class="row">
+            	<div class="col-sm-12">
+                	<div class="main-content bg-white">
+                    	<div class="row">
+            				<div class="col-sm-12">
+                				<div class="ad-block"><h3>welcome</h3></div>
+                			</div>
+                		</div>
+                		
+<h2>${message}</h2><h2>${message1}</h2><h2>${message2}</h2>  
+                		
 <form action ="Txn.html" method="post">
-<br>
-<h>Select your Board</h>
+<br></br>
+<h1>Select your Board</h1>
   <select name="operator">
     <option value="MP">Madhya Pradesh(MPEB)</option>
     <option value="AP">Ardhra(APEPB)</option>
     <option value="MH">Maharashtra(MEB)</option>
     <option value="CG">CGEB</option>
-  </select><br>
-  <br>
- <h>Enter Your Amount</h>
- <input type="text" name="Amount"> <br>
- <br>
+  </select><br></br>
+ <h1>Enter Your Amount</h1>
+ <input type="text" name="Amount"></input> <br></br>
  <input type ="submit" name="Submit" value="Proceed to pay"/>
 <input type="button" id="s1" value = "back" onclick="location.href='/BankApplication/Services.html'"></input>
 <input type="button" id="b2" value = "Home" onclick="location.href='/BankApplication/Validate.html'"></input>
  
 </form>
-<footer>Copyright &copy; ssa.com</footer>
+							
+                    </div>
+                </div>
+            </div>
+            
+</div>
+    <!--footer start-->
+    <div class="row">
+    	<div class="col-sm-12">
+        	<div class="footer bg-white">
+            	<div class="copyright">
+                	<p>Copyright &copy; ExoticTheme 2015, Downloaded from <a href="http://localhost:8083/BankApplication/" target="_blank">ExoticTheme.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 </body>
 </html>

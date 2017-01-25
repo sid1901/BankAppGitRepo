@@ -114,7 +114,7 @@ public ModelAndView enterdb_fun(HttpServletRequest request, HttpServletResponse 
 
 @RequestMapping("/Forgot")  
 public ModelAndView ForgotPwd_Fun(HttpServletRequest request, HttpServletResponse response) {
-	String message = "Dummy Message";
+	String message = "";
 	return new ModelAndView("ForgotPWDPage", "message", message); 
 }
 

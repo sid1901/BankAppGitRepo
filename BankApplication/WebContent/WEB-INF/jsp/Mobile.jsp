@@ -6,31 +6,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 
-<script>
-function validateForm() {
-    var x = document.forms["Txn"]["Amount"].value;
-    if (x == "") {
-        alert("Please enter Recharge amount");
-        return false;
-    }
-    
-    function ValidateNo() {
-        var phoneNo = document.getElementById('txtPhoneNo');
 
-    if (phoneNo.value == "" || phoneNo.value == null) {
-            alert("Please enter your Mobile No.");
-            return false;
-        }
-        if (phoneNo.value.length < 10 || phoneNo.value.length > 10) {
-            alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
-            return false;
-        }
-
-        alert("Success ");
-        return true;
-        }
-}
-</script>
 </head>
 
 
